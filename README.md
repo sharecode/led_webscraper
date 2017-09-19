@@ -4,8 +4,8 @@ LED.go.th Web scraper with MAP view
 #Setup
 
 1.import Mysql database to Database Server 
-database1.sql.zip
-database2.sql.zip
+ - database1.sql.zip
+ - database2.sql.zip
 
 2.upload folder public_html to webserver
 
