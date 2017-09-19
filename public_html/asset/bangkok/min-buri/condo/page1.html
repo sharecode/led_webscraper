@@ -1,0 +1,1761 @@
+<html>
+<head>
+<title>Legal Execution Department.</title>
+<meta http-equiv="Content-Type" content="text/html; charset=windows-874">
+<link rel="stylesheet" href="template_font.css" type="text/css">
+<link rel="stylesheet" href="js/calendar/CalendarControl.css" media="screen"></link>
+<script type="text/JavaScript">
+<!--
+function MM_openBrWindow(theURL,winName,features) { //v2.0
+  window.open(theURL,winName,features);
+}
+//-->
+</script>
+</head>
+<!--<style type="text/css">
+body{
+	filter: progid:DXImageTransform.Microsoft.BasicImage(grayscale=1);
+	-webkit-filter:grayscale(1);
+	filter:grayscale(1);
+	filter: gray;
+}
+</style>-->
+<body bgcolor="#FFFFFF" text="#000000"  leftmargin="0" topmargin="0">
+
+<table width="790" border="0" cellspacing="0" cellpadding="0" align="center">
+  <tr> 
+    <td height="56" background="img/header_asset_01.jpg" width="542">&nbsp;</td>
+    <td height="51" width="76" bgcolor="#152A7C">&nbsp;</td>
+    <td height="51" width="172" bgcolor="#152A7C"><img src="img/link_home.jpg" width="141" height="51" usemap="#Map2" border="0"> 
+      <map name="Map2"> 
+        <area shape="rect" coords="27,30,134,45">
+        <area shape="rect" coords="27,7,114,24" href="http://www.led.go.th">
+        <area shape="circle" coords="15,16,8" href="http://www.led.go.th">
+        <area shape="circle" coords="15,37,8">
+      </map>
+    </td>
+  </tr>
+  <tr> 
+    <td width="542" background="img/header_asset_search_province.jpg">&nbsp;</td>
+    <td colspan="2"> 
+      <table width="244" border="0" class="font-default-14px" cellspacing="0" cellpadding="0" align="center">
+        <tr> 
+          <td rowspan="5" valign="top" width="27%"><a href="asset_search_map.asp"><img src="img/icon_thai-map.gif" width="60" height="99" border="0"></a></td>
+          <td width="10%" height="10">&nbsp;</td>
+          <td width="63%" height="10">&nbsp;</td>
+        </tr>
+        <tr> 
+          <td width="10%" height="13"> 
+            <div align="center"><img src="img/icon_right_arrow.gif" width="5" height="9"></div>
+          </td>
+          <td width="63%" height="13"> 
+            <p><a href="asset_search_sub_map.asp?search_province=กรุงเทพ" >ค้นหาทรัพย์สิน 
+              ส่วนกลาง </a></p>
+          </td>
+        </tr>
+        <tr> 
+          <td width="10%" height="2" > 
+            <div align="center"><img src="img/icon_right_arrow.gif" width="5" height="9"></div>
+          </td>
+          <td width="63%" height="2"> 
+            <p><a href="asset_search_map.asp">ค้นหาทรัพย์สิน ทั่วประเทศ</a></p>
+          </td>
+        </tr>
+<!--
+        <tr> 
+          <td width="10%" height="2" > 
+            <div align="center"><img src="img/icon_right_arrow.gif" width="5" height="9"></div>
+          </td>
+          <td width="63%" height="2"> 
+            <p><a href="asset_pramool.asp">ค้นหาทรัพย์สิน ตามวันประมูล</a></p>
+          </td>
+        </tr>
+-->
+        <tr> 
+          <td valign="baseline" height="20" width="10%">&nbsp;</td>
+          <td valign="baseline" height="20" width="63%">&nbsp;</td>
+        </tr>
+      </table>
+    </td>
+  </tr>
+</table><form name="form_send_cgi" method="post" >
+  <table width="790" border="0" style="display: none;" align="center">
+    <tr> 
+      <td width="9%" class="font-default-14px"> 
+        <div align="right">command &gt;&gt; </div>
+      </td>
+      <td width="10%" class="font-default-14px"> 
+                xxx</td>
+      <td class="font-default-14px" colspan="2"> 
+        <input type="hidden" name="command">
+        <input type="hidden" name="id">
+        &lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt; 
+        ไม่ได้ใช้ </td>
+    </tr>
+    <tr> 
+      <td width="9%" class="font-default-14px"> 
+        <div align="right">page &gt;&gt; </div>
+      </td>
+      <td width="10%" class="font-default-14px"> 
+        <script language="JavaScript">
+function  OpenPage(page_index) {
+    var f = document.form_send_cgi;
+	f.action =  f.page_action.value;
+	f.current_page_index.value = page_index;
+	
+	
+	var  str 	 = "?current_page_index=" + f.current_page_index.value
+					+ "&search_asset_type_id=" + f.search_asset_type_id.value
+					+ "&search_tumbol=" + f.search_tumbol.value
+					+	"&search_ampur=" + f.search_ampur.value
+					+	"&search_province=" + f.search_province.value
+					+	"&search_sub_province=" + f.search_sub_province.value
+					+	"&search_price_begin=" + f.search_price_begin.value
+					+	"&search_price_end=" + f.search_price_end.value
+					+	"&search_bid_date=" + f.search_bid_date.value ;
+
+		
+		document.location =  f.page_action.value + str;
+}
+
+</script>
+        <input type="hidden" name="page_action" value="asset_search_province.asp">
+      </td>
+      <td class="font-default-14px" colspan="2"> 
+        <input type="hidden" name="current_page_index" value="0">
+      </td>
+    </tr>
+    <tr> 
+      <td width="9%" class="font-default-14px"> 
+        <div align="right">search &gt;&gt; </div>
+      </td>
+      <td width="10%" class="font-default-14px"> 
+        <script language="JavaScript">
+  function Clear_Search() {
+      var f = document.form_send_cgi;
+	  f.action =  f.search_action.value;
+	  f.search_keyword.value = "";
+	  f.search_from_date.value = "";
+  	  f.search_to_date.value = "";
+	  f.submit();
+  }
+  //#######################################
+  function Search() {
+      var f = document.form_send_cgi;
+	  f.action =  f.search_action.value;
+	  f.search_asset_type_id.value = document.all.asset_type.value;
+  	  f.search_tumbol.value = document.all.tumbol.value;
+  	  f.search_ampur.value = document.all.ampur.value;
+ 	  //f.search_province.value = document.all.province.value;
+	  f.search_sub_province.value = document.all.sub_province.value;
+ 	  f.search_bid_date.value = document.all.bid_date.value;
+ 	  f.search_seckey.value = document.all.seckey.value;
+
+	  //++++++ check price input +++++++
+	
+	 var price_begin =  document.all.price_begin.value.replace(",","") ;
+	 var price_end =  document.all.price_end.value.replace(",","") ;
+	 
+	 if(price_begin!="" && price_end !="") {
+		  if( Number(price_begin) == 0 && Number(price_end )==0 ) {
+	  			alert("กรุณากรอกจำนวนเงินที่ มากกว่า 0 บาท" );
+		  		return ;
+		  }
+	 }
+	  
+	  if( Number(price_begin) <= Number(price_end )) {
+  	      f.search_price_begin.value = document.all.price_begin.value;
+  	      f.search_price_end.value = document.all.price_end.value;
+	  }  else {
+  	      f.search_price_begin.value = document.all.price_end.value;
+  	      f.search_price_end.value = document.all.price_begin.value;	 
+	  }
+	if (f.search_bid_date.value != "")
+	{
+		var selDate=new Date();
+		selDate.setFullYear((f.search_bid_date.value.substr(6,4)-543),(f.search_bid_date.value.substr(3,2)-1),f.search_bid_date.value.substr(0,2));
+		var today = new Date();
+		if (selDate<today) 
+		{
+			alert("ไม่สามารถค้นหาวันย้อนหลังได้    " );
+			return;
+		}
+	}
+	  //+++++++++++++++++++++++++++++
+	  //AdvanceSearch();
+  	  //+++++++++++++++++++++++++++++
+	  // f.submit();
+
+	var  str 	= "?search_asset_type_id=" + f.search_asset_type_id.value
+					+ "&search_tumbol=" + f.search_tumbol.value
+					+	"&search_ampur=" + f.search_ampur.value
+					+	"&search_province=" + f.search_province.value
+					+	"&search_sub_province=" + f.search_sub_province.value
+					+	"&search_price_begin=" + f.search_price_begin.value
+					+	"&search_price_end=" + f.search_price_end.value
+					+	"&search_bid_date=" + f.search_bid_date.value;
+
+	/*				+	"&search_law_suit_no=" + f.search_law_suit_no.value
+					+	"&search_law_suit_year=" + f.search_law_suit_year.value
+					+	"&search_law_court_name=" + f.search_law_court_name.value
+					+	"&search_owner_suit_name=" + f.search_owner_suit_name.value
+					+	"&search_person1=" + f.search_person1.value
+					+	"&search_person2=" + f.search_person2.value;
+	*/
+
+		if (document.all.seckey.value!="")
+		{
+			document.location =  f.page_action.value + str;
+		} else alert("รหัสยืนยันไม่ตรงตามตัวเลข โปรดกรอกใหม");
+		//document.location = f.search_action.value + str;
+
+	//alert(f.key.value);
+	/*
+		if (document.all.seckey.value!="")
+		{
+			var numForms = "aspform";
+			document.forms[numForms].submit();
+		} else alert("รหัสยืนยันไม่ตรงตามตัวเลข โปรดกรอกใหม");
+*/
+
+  }
+  
+    //#######################################
+  function AdvanceSearch() {
+      var f = document.form_send_cgi;
+	  f.action =  f.search_action.value;
+   	  f.search_law_suit_no.value = document.all.law_suit_no.value;
+  	  f.search_law_suit_year.value = document.all.law_suit_year.value;
+  	  f.search_law_court_name.value = document.all.law_court_name.value;
+   	  f.search_owner_suit_name.value = document.all.owner_suit_name.value;
+ 	  f.search_person1.value = document.all.person1.value;
+   	  f.search_person2.value = document.all.person2.value;
+  }
+  
+</script>
+        <input type="hidden" name="search_action" value="asset_search_province.asp">
+        <script language="JavaScript">
+		function SetSelection(obj_selection , str_value) {
+		   var i;
+		   for(i=0; i< obj_selection.length ;i++) {
+		      if(obj_selection.options[i].value==str_value) {
+			  		obj_selection.selectedIndex = i;
+					return;
+			  }
+		   }
+		}
+		</script>
+      </td>
+      <td width="29%" class="font-default-14px"> ทั่วไป 
+        <input type="hidden" name="search_asset_type_id" value="002">
+        <input type="hidden" name="search_tumbol" value="">
+        <input type="hidden" name="search_ampur" value="มีนบุรี">
+        <input type="hidden" name="search_province" value="กรุงเทพ">
+        <input type="hidden" name="search_sub_province" value="">
+        <input type="hidden" name="search_price_begin" value="">
+        <input type="hidden" name="search_price_end" value="1500000">
+        <input type="hidden" name="search_bid_date" value="">
+        <input type="hidden" name="search_seckey" value="">
+
+      </td>
+      <td width="52%" class="font-default-14px">&nbsp;</td>
+    </tr>
+  </table>
+</form>
+<table width="790" border="0" align="center">
+  <tr>
+    <td><font color="#CFFC79"><b><font color="#006600" size="3">&nbsp;&nbsp;ค้นหาทรัพย์สิน 
+      : </font><font color="#0033FF" size="3">จังหวัด&nbsp;&nbsp;กรุงเทพ</font></b></font></td>
+  </tr>
+<tr><td></td></tr>
+</table>
+<table width="507" border="0" height="324" align="center">
+  <tr> 
+    <td width="596" valign="top"> 
+
+
+
+      <table width="574" border="1" align="center" cellspacing="0" cellpadding="0" height="15" bordercolor="#FFFFFF">
+        <tr> 
+          <td bgcolor="#0099FF" class="font-9px" bordercolor="#0033FF" height="20"><b><font color="#FFFFFF">&nbsp;&nbsp;&nbsp;ผลการค้นหา 
+            พบ<font color="#0000FF">&nbsp;&nbsp;<font color="#FFFF99">35</font>&nbsp;&nbsp;</font> 
+            รายการ </font></b></td>
+        </tr>
+        <tr> 
+          <td bordercolor="#0000FF" class="font-9px" bgcolor="#CCCCCC"> 
+            <table width="599" border="0" cellspacing="1" cellpadding="1" height="58">
+              <tr bgcolor="#FFFFCC"> 
+                <td width="50" class="font-9px" height="22" rowspan="2"> 
+                  <div align="center"><b><font color="#336633">ลำดับที่<br>
+                    การขาย </font></b></div>
+                </td>
+                <td width="67" class="font-9px" height="22" rowspan="2"> 
+                  <div align="center"><b><font color="#336633">หมายเลขคดี</font></b></div>
+                </td>
+                <td width="110" class="font-9px" height="22" rowspan="2"> 
+                  <div align="center"><b><font color="#336633">ประเภททรัพย์</font></b></div>
+                </td>
+                <td class="font-9px" height="10" colspan="3"> 
+                  <div align="center"><b><font color="#336633">ขนาด</font></b></div>
+                </td>
+                <td width="61" class="font-9px" height="22" bgcolor="#FFFFCC" rowspan="2"> 
+                  <div align="center"><b><font color="#336633">ราคาประเมิน</font></b></div>
+                </td>
+                <td width="61" class="font-9px" height="22" bgcolor="#FFFFCC" rowspan="2"> 
+                  <div align="center"><b><font color="#336633">ตำบล</font></b></div>
+                </td>
+                <td width="68" class="font-9px" height="22" bgcolor="#FFFFCC" rowspan="2"> 
+                  <div align="center"><b><font color="#336633">อำเภอ</font></b></div>
+                </td>
+                <td width="71" class="font-9px" height="22" bgcolor="#FFFFCC" rowspan="2"> 
+                  <div align="center"><b><font color="#336633">จังหวัด</font></b></div>
+                </td>
+<!--                <td width="72" class="font-9px" height="22" bgcolor="#FFFFCC" rowspan="2"> 
+                  <div align="center"><b><font color="#336633">ราคาประเมิน<br>
+                    (บาท)</font></b></div>
+                </td>
+ -->
+              </tr>
+              <tr bgcolor="#FFFFCC"> 
+                <td width="22" class="font-9px" height="7"> 
+                  <div align="center"><font color="#006600">ไร่</font></div>
+                </td>
+                <td width="25" class="font-9px" height="7"> 
+                  <div align="center"><font color="#006600">งาน</font></div>
+                </td>
+                <td width="30" class="font-9px" height="7"> 
+                  <div align="center"><font color="#006600">ตร.วา</font></div>
+                </td>
+              </tr>
+              <!-- BEGIN TABLE_ROW_TEMPLATE -->
+
+              <tr onMouseOver="style.cursor='hand'; javascript:style.backgroundColor='#CBFA65'" onMouseOut="javascript:style.backgroundColor='#FFFFFF'" bgcolor="#FFFFFF"  onClick="window.open('asset_open.asp?law_suit_no=ล.1756&law_suit_year=2549&deed_no=49691,49692&addrno=43/402',null,'width=740,height=600,status=yes,toolbar=no,menubar=yes,location=no,scrollbars=yes,resizable=yes'); return false;" > 
+                <td width="50" class="font-9px" height="18"  > 
+                  <div align="left"><font color="#0000FF">1 - 1</font></div>
+                </td>
+                <td width="67" class="font-9px" height="18" > 
+                  <div align="left"><font color="#0000FF">&nbsp;ล.1756/2549</font></div>
+                </td>
+                <td width="110" class="font-9px" height="18" > 
+                  <div align="left"><font color="#0000FF">&nbsp; ห้องชุด</font></div>
+                </td>
+                <td width="22" class="font-9px" height="18" > 
+                  <div align="center"><font color="#0000FF">0</font></div>
+                </td>
+                <td class="font-9px" height="18" width="25" > 
+                  <div align="center"><font color="#0000FF">0</font></div>
+                </td>
+                <td class="font-9px" height="18" width="30" > 
+                  <div align="center"><font color="#0000FF">26</font></div>
+                </td>
+                <td width="61" class="font-9px" height="18" align="right"><font color="#0000FF">&nbsp;
+                 210,000.00
+                </font></td>                                                                     
+                <td width="61" class="font-9px" height="18" ><font color="#0000FF">&nbsp;แสนแสบ</font></td>
+                <td width="68" class="font-9px" height="18" ><font color="#0000FF">&nbsp;มีนบุรี</font></td>
+                <td width="71" class="font-9px" height="18" ><font color="#0000FF">&nbsp;กรุงเทพ</font></td>
+<!--                <td width="72" class="font-9px" height="18" > 
+                  <div align="right"><font color="#0000FF">210,000&nbsp;&nbsp;</font></div>
+                </td>
+-->
+              </tr>
+		
+              <tr onMouseOver="style.cursor='hand'; javascript:style.backgroundColor='#CBFA65'" onMouseOut="javascript:style.backgroundColor='#FFFFFF'" bgcolor="#FFFFFF"  onClick="window.open('asset_open.asp?law_suit_no=ล.1756&law_suit_year=2549&deed_no=49691,49692&addrno=43/404',null,'width=740,height=600,status=yes,toolbar=no,menubar=yes,location=no,scrollbars=yes,resizable=yes'); return false;" > 
+                <td width="50" class="font-9px" height="18"  > 
+                  <div align="left"><font color="#0000FF">1 - 2</font></div>
+                </td>
+                <td width="67" class="font-9px" height="18" > 
+                  <div align="left"><font color="#0000FF">&nbsp;ล.1756/2549</font></div>
+                </td>
+                <td width="110" class="font-9px" height="18" > 
+                  <div align="left"><font color="#0000FF">&nbsp; ห้องชุด</font></div>
+                </td>
+                <td width="22" class="font-9px" height="18" > 
+                  <div align="center"><font color="#0000FF">0</font></div>
+                </td>
+                <td class="font-9px" height="18" width="25" > 
+                  <div align="center"><font color="#0000FF">0</font></div>
+                </td>
+                <td class="font-9px" height="18" width="30" > 
+                  <div align="center"><font color="#0000FF">26</font></div>
+                </td>
+                <td width="61" class="font-9px" height="18" align="right"><font color="#0000FF">&nbsp;
+                 210,000.00
+                </font></td>                                                                     
+                <td width="61" class="font-9px" height="18" ><font color="#0000FF">&nbsp;แสนแสบ</font></td>
+                <td width="68" class="font-9px" height="18" ><font color="#0000FF">&nbsp;มีนบุรี</font></td>
+                <td width="71" class="font-9px" height="18" ><font color="#0000FF">&nbsp;กรุงเทพ</font></td>
+<!--                <td width="72" class="font-9px" height="18" > 
+                  <div align="right"><font color="#0000FF">210,000&nbsp;&nbsp;</font></div>
+                </td>
+-->
+              </tr>
+		
+              <tr onMouseOver="style.cursor='hand'; javascript:style.backgroundColor='#CBFA65'" onMouseOut="javascript:style.backgroundColor='#FFFFFF'" bgcolor="#FFFFFF"  onClick="window.open('asset_open.asp?law_suit_no=76&law_suit_year=2551&deed_no=30722&addrno=99/604',null,'width=740,height=600,status=yes,toolbar=no,menubar=yes,location=no,scrollbars=yes,resizable=yes'); return false;" > 
+                <td width="50" class="font-9px" height="18"  > 
+                  <div align="left"><font color="#0000FF">2 - 1</font></div>
+                </td>
+                <td width="67" class="font-9px" height="18" > 
+                  <div align="left"><font color="#0000FF">&nbsp;76/2551</font></div>
+                </td>
+                <td width="110" class="font-9px" height="18" > 
+                  <div align="left"><font color="#0000FF">&nbsp; ห้องชุด</font></div>
+                </td>
+                <td width="22" class="font-9px" height="18" > 
+                  <div align="center"><font color="#0000FF">0</font></div>
+                </td>
+                <td class="font-9px" height="18" width="25" > 
+                  <div align="center"><font color="#0000FF">0</font></div>
+                </td>
+                <td class="font-9px" height="18" width="30" > 
+                  <div align="center"><font color="#0000FF">34</font></div>
+                </td>
+                <td width="61" class="font-9px" height="18" align="right"><font color="#0000FF">&nbsp;
+                 267,540.00
+                </font></td>                                                                     
+                <td width="61" class="font-9px" height="18" ><font color="#0000FF">&nbsp;บางชัน</font></td>
+                <td width="68" class="font-9px" height="18" ><font color="#0000FF">&nbsp;มีนบุรี</font></td>
+                <td width="71" class="font-9px" height="18" ><font color="#0000FF">&nbsp;กรุงเทพ</font></td>
+<!--                <td width="72" class="font-9px" height="18" > 
+                  <div align="right"><font color="#0000FF">267,540&nbsp;&nbsp;</font></div>
+                </td>
+-->
+              </tr>
+		
+              <tr onMouseOver="style.cursor='hand'; javascript:style.backgroundColor='#CBFA65'" onMouseOut="javascript:style.backgroundColor='#FFFFFF'" bgcolor="#FFFFFF"  onClick="window.open('asset_open.asp?law_suit_no=ผบ.11432&law_suit_year=2552&deed_no=30722&addrno=99/731',null,'width=740,height=600,status=yes,toolbar=no,menubar=yes,location=no,scrollbars=yes,resizable=yes'); return false;" > 
+                <td width="50" class="font-9px" height="18"  > 
+                  <div align="left"><font color="#0000FF">3 - 1</font></div>
+                </td>
+                <td width="67" class="font-9px" height="18" > 
+                  <div align="left"><font color="#0000FF">&nbsp;ผบ.11432/2552</font></div>
+                </td>
+                <td width="110" class="font-9px" height="18" > 
+                  <div align="left"><font color="#0000FF">&nbsp; ห้องชุด</font></div>
+                </td>
+                <td width="22" class="font-9px" height="18" > 
+                  <div align="center"><font color="#0000FF">0</font></div>
+                </td>
+                <td class="font-9px" height="18" width="25" > 
+                  <div align="center"><font color="#0000FF">0</font></div>
+                </td>
+                <td class="font-9px" height="18" width="30" > 
+                  <div align="center"><font color="#0000FF">32</font></div>
+                </td>
+                <td width="61" class="font-9px" height="18" align="right"><font color="#0000FF">&nbsp;
+                 232,560.00
+                </font></td>                                                                     
+                <td width="61" class="font-9px" height="18" ><font color="#0000FF">&nbsp;บางชัน</font></td>
+                <td width="68" class="font-9px" height="18" ><font color="#0000FF">&nbsp;มีนบุรี</font></td>
+                <td width="71" class="font-9px" height="18" ><font color="#0000FF">&nbsp;กรุงเทพ</font></td>
+<!--                <td width="72" class="font-9px" height="18" > 
+                  <div align="right"><font color="#0000FF">232,560&nbsp;&nbsp;</font></div>
+                </td>
+-->
+              </tr>
+		
+              <tr onMouseOver="style.cursor='hand'; javascript:style.backgroundColor='#CBFA65'" onMouseOut="javascript:style.backgroundColor='#FFFFFF'" bgcolor="#FFFFFF"  onClick="window.open('asset_open.asp?law_suit_no=ผบ.7327&law_suit_year=2554&deed_no=38823&addrno=17/384',null,'width=740,height=600,status=yes,toolbar=no,menubar=yes,location=no,scrollbars=yes,resizable=yes'); return false;" > 
+                <td width="50" class="font-9px" height="18"  > 
+                  <div align="left"><font color="#0000FF">7 - 1</font></div>
+                </td>
+                <td width="67" class="font-9px" height="18" > 
+                  <div align="left"><font color="#0000FF">&nbsp;ผบ.7327/2554</font></div>
+                </td>
+                <td width="110" class="font-9px" height="18" > 
+                  <div align="left"><font color="#0000FF">&nbsp; ห้องชุด</font></div>
+                </td>
+                <td width="22" class="font-9px" height="18" > 
+                  <div align="center"><font color="#0000FF">0</font></div>
+                </td>
+                <td class="font-9px" height="18" width="25" > 
+                  <div align="center"><font color="#0000FF">0</font></div>
+                </td>
+                <td class="font-9px" height="18" width="30" > 
+                  <div align="center"><font color="#0000FF">25</font></div>
+                </td>
+                <td width="61" class="font-9px" height="18" align="right"><font color="#0000FF">&nbsp;
+                 339,660.00
+                </font></td>                                                                     
+                <td width="61" class="font-9px" height="18" ><font color="#0000FF">&nbsp;มีนบุรี</font></td>
+                <td width="68" class="font-9px" height="18" ><font color="#0000FF">&nbsp;มีนบุรี</font></td>
+                <td width="71" class="font-9px" height="18" ><font color="#0000FF">&nbsp;กรุงเทพ</font></td>
+<!--                <td width="72" class="font-9px" height="18" > 
+                  <div align="right"><font color="#0000FF">339,660&nbsp;&nbsp;</font></div>
+                </td>
+-->
+              </tr>
+		
+              <tr onMouseOver="style.cursor='hand'; javascript:style.backgroundColor='#CBFA65'" onMouseOut="javascript:style.backgroundColor='#FFFFFF'" bgcolor="#FFFFFF"  onClick="window.open('asset_open.asp?law_suit_no=ผบ.9449&law_suit_year=2554&deed_no=18126,27247&addrno=87/41',null,'width=740,height=600,status=yes,toolbar=no,menubar=yes,location=no,scrollbars=yes,resizable=yes'); return false;" > 
+                <td width="50" class="font-9px" height="18"  > 
+                  <div align="left"><font color="#0000FF">9 - 1</font></div>
+                </td>
+                <td width="67" class="font-9px" height="18" > 
+                  <div align="left"><font color="#0000FF">&nbsp;ผบ.9449/2554</font></div>
+                </td>
+                <td width="110" class="font-9px" height="18" > 
+                  <div align="left"><font color="#0000FF">&nbsp; ห้องชุด</font></div>
+                </td>
+                <td width="22" class="font-9px" height="18" > 
+                  <div align="center"><font color="#0000FF">0</font></div>
+                </td>
+                <td class="font-9px" height="18" width="25" > 
+                  <div align="center"><font color="#0000FF">0</font></div>
+                </td>
+                <td class="font-9px" height="18" width="30" > 
+                  <div align="center"><font color="#0000FF">27</font></div>
+                </td>
+                <td width="61" class="font-9px" height="18" align="right"><font color="#0000FF">&nbsp;
+                 287,175.00
+                </font></td>                                                                     
+                <td width="61" class="font-9px" height="18" ><font color="#0000FF">&nbsp;บางชัน</font></td>
+                <td width="68" class="font-9px" height="18" ><font color="#0000FF">&nbsp;มีนบุรี</font></td>
+                <td width="71" class="font-9px" height="18" ><font color="#0000FF">&nbsp;กรุงเทพ</font></td>
+<!--                <td width="72" class="font-9px" height="18" > 
+                  <div align="right"><font color="#0000FF">287,175&nbsp;&nbsp;</font></div>
+                </td>
+-->
+              </tr>
+		
+              <tr onMouseOver="style.cursor='hand'; javascript:style.backgroundColor='#CBFA65'" onMouseOut="javascript:style.backgroundColor='#FFFFFF'" bgcolor="#FFFFFF"  onClick="window.open('asset_open.asp?law_suit_no=19874&law_suit_year=2548&deed_no=34531&addrno=69/517',null,'width=740,height=600,status=yes,toolbar=no,menubar=yes,location=no,scrollbars=yes,resizable=yes'); return false;" > 
+                <td width="50" class="font-9px" height="18"  > 
+                  <div align="left"><font color="#0000FF">9 - 1</font></div>
+                </td>
+                <td width="67" class="font-9px" height="18" > 
+                  <div align="left"><font color="#0000FF">&nbsp;19874/2548</font></div>
+                </td>
+                <td width="110" class="font-9px" height="18" > 
+                  <div align="left"><font color="#0000FF">&nbsp; ห้องชุด</font></div>
+                </td>
+                <td width="22" class="font-9px" height="18" > 
+                  <div align="center"><font color="#0000FF">0</font></div>
+                </td>
+                <td class="font-9px" height="18" width="25" > 
+                  <div align="center"><font color="#0000FF">0</font></div>
+                </td>
+                <td class="font-9px" height="18" width="30" > 
+                  <div align="center"><font color="#0000FF">33</font></div>
+                </td>
+                <td width="61" class="font-9px" height="18" align="right"><font color="#0000FF">&nbsp;
+                 370,150.00
+                </font></td>                                                                     
+                <td width="61" class="font-9px" height="18" ><font color="#0000FF">&nbsp;บางชัน</font></td>
+                <td width="68" class="font-9px" height="18" ><font color="#0000FF">&nbsp;มีนบุรี</font></td>
+                <td width="71" class="font-9px" height="18" ><font color="#0000FF">&nbsp;กรุงเทพ</font></td>
+<!--                <td width="72" class="font-9px" height="18" > 
+                  <div align="right"><font color="#0000FF">370,150&nbsp;&nbsp;</font></div>
+                </td>
+-->
+              </tr>
+		
+              <tr onMouseOver="style.cursor='hand'; javascript:style.backgroundColor='#CBFA65'" onMouseOut="javascript:style.backgroundColor='#FFFFFF'" bgcolor="#FFFFFF"  onClick="window.open('asset_open.asp?law_suit_no=ม.1371&law_suit_year=2551&deed_no=34531&addrno=69/609',null,'width=740,height=600,status=yes,toolbar=no,menubar=yes,location=no,scrollbars=yes,resizable=yes'); return false;" > 
+                <td width="50" class="font-9px" height="18"  > 
+                  <div align="left"><font color="#0000FF">12 - 1</font></div>
+                </td>
+                <td width="67" class="font-9px" height="18" > 
+                  <div align="left"><font color="#0000FF">&nbsp;ม.1371/2551</font></div>
+                </td>
+                <td width="110" class="font-9px" height="18" > 
+                  <div align="left"><font color="#0000FF">&nbsp; ห้องชุด</font></div>
+                </td>
+                <td width="22" class="font-9px" height="18" > 
+                  <div align="center"><font color="#0000FF">0</font></div>
+                </td>
+                <td class="font-9px" height="18" width="25" > 
+                  <div align="center"><font color="#0000FF">0</font></div>
+                </td>
+                <td class="font-9px" height="18" width="30" > 
+                  <div align="center"><font color="#0000FF">32</font></div>
+                </td>
+                <td width="61" class="font-9px" height="18" align="right"><font color="#0000FF">&nbsp;
+                 371,795.00
+                </font></td>                                                                     
+                <td width="61" class="font-9px" height="18" ><font color="#0000FF">&nbsp;บางชัน</font></td>
+                <td width="68" class="font-9px" height="18" ><font color="#0000FF">&nbsp;มีนบุรี</font></td>
+                <td width="71" class="font-9px" height="18" ><font color="#0000FF">&nbsp;กรุงเทพ</font></td>
+<!--                <td width="72" class="font-9px" height="18" > 
+                  <div align="right"><font color="#0000FF">371,795&nbsp;&nbsp;</font></div>
+                </td>
+-->
+              </tr>
+		
+              <tr onMouseOver="style.cursor='hand'; javascript:style.backgroundColor='#CBFA65'" onMouseOut="javascript:style.backgroundColor='#FFFFFF'" bgcolor="#FFFFFF"  onClick="window.open('asset_open.asp?law_suit_no=2442&law_suit_year=2541&deed_no=49691, 49692&addrno=42/527',null,'width=740,height=600,status=yes,toolbar=no,menubar=yes,location=no,scrollbars=yes,resizable=yes'); return false;" > 
+                <td width="50" class="font-9px" height="18"  > 
+                  <div align="left"><font color="#0000FF">14 - 1</font></div>
+                </td>
+                <td width="67" class="font-9px" height="18" > 
+                  <div align="left"><font color="#0000FF">&nbsp;2442/2541</font></div>
+                </td>
+                <td width="110" class="font-9px" height="18" > 
+                  <div align="left"><font color="#0000FF">&nbsp; ห้องชุด</font></div>
+                </td>
+                <td width="22" class="font-9px" height="18" > 
+                  <div align="center"><font color="#0000FF">0</font></div>
+                </td>
+                <td class="font-9px" height="18" width="25" > 
+                  <div align="center"><font color="#0000FF">0</font></div>
+                </td>
+                <td class="font-9px" height="18" width="30" > 
+                  <div align="center"><font color="#0000FF">26</font></div>
+                </td>
+                <td width="61" class="font-9px" height="18" align="right"><font color="#0000FF">&nbsp;
+                 196,875.00
+                </font></td>                                                                     
+                <td width="61" class="font-9px" height="18" ><font color="#0000FF">&nbsp;แสนแสบ</font></td>
+                <td width="68" class="font-9px" height="18" ><font color="#0000FF">&nbsp;มีนบุรี</font></td>
+                <td width="71" class="font-9px" height="18" ><font color="#0000FF">&nbsp;กรุงเทพ</font></td>
+<!--                <td width="72" class="font-9px" height="18" > 
+                  <div align="right"><font color="#0000FF">196,875&nbsp;&nbsp;</font></div>
+                </td>
+-->
+              </tr>
+		
+              <tr onMouseOver="style.cursor='hand'; javascript:style.backgroundColor='#CBFA65'" onMouseOut="javascript:style.backgroundColor='#FFFFFF'" bgcolor="#FFFFFF"  onClick="window.open('asset_open.asp?law_suit_no=ธ.3681&law_suit_year=2547&deed_no=23928&addrno=78/1499',null,'width=740,height=600,status=yes,toolbar=no,menubar=yes,location=no,scrollbars=yes,resizable=yes'); return false;" > 
+                <td width="50" class="font-9px" height="18"  > 
+                  <div align="left"><font color="#0000FF">14 - 1</font></div>
+                </td>
+                <td width="67" class="font-9px" height="18" > 
+                  <div align="left"><font color="#0000FF">&nbsp;ธ.3681/2547</font></div>
+                </td>
+                <td width="110" class="font-9px" height="18" > 
+                  <div align="left"><font color="#0000FF">&nbsp; ห้องชุด</font></div>
+                </td>
+                <td width="22" class="font-9px" height="18" > 
+                  <div align="center"><font color="#0000FF">0</font></div>
+                </td>
+                <td class="font-9px" height="18" width="25" > 
+                  <div align="center"><font color="#0000FF">0</font></div>
+                </td>
+                <td class="font-9px" height="18" width="30" > 
+                  <div align="center"><font color="#0000FF">27</font></div>
+                </td>
+                <td width="61" class="font-9px" height="18" align="right"><font color="#0000FF">&nbsp;
+                 313,375.00
+                </font></td>                                                                     
+                <td width="61" class="font-9px" height="18" ><font color="#0000FF">&nbsp;บางชัน</font></td>
+                <td width="68" class="font-9px" height="18" ><font color="#0000FF">&nbsp;มีนบุรี</font></td>
+                <td width="71" class="font-9px" height="18" ><font color="#0000FF">&nbsp;กรุงเทพ</font></td>
+<!--                <td width="72" class="font-9px" height="18" > 
+                  <div align="right"><font color="#0000FF">313,375&nbsp;&nbsp;</font></div>
+                </td>
+-->
+              </tr>
+		
+              <tr onMouseOver="style.cursor='hand'; javascript:style.backgroundColor='#CBFA65'" onMouseOut="javascript:style.backgroundColor='#FFFFFF'" bgcolor="#FFFFFF"  onClick="window.open('asset_open.asp?law_suit_no=ธ.3681&law_suit_year=2547&deed_no=23928&addrno=78/1500',null,'width=740,height=600,status=yes,toolbar=no,menubar=yes,location=no,scrollbars=yes,resizable=yes'); return false;" > 
+                <td width="50" class="font-9px" height="18"  > 
+                  <div align="left"><font color="#0000FF">14 - 2</font></div>
+                </td>
+                <td width="67" class="font-9px" height="18" > 
+                  <div align="left"><font color="#0000FF">&nbsp;ธ.3681/2547</font></div>
+                </td>
+                <td width="110" class="font-9px" height="18" > 
+                  <div align="left"><font color="#0000FF">&nbsp; ห้องชุด</font></div>
+                </td>
+                <td width="22" class="font-9px" height="18" > 
+                  <div align="center"><font color="#0000FF">0</font></div>
+                </td>
+                <td class="font-9px" height="18" width="25" > 
+                  <div align="center"><font color="#0000FF">0</font></div>
+                </td>
+                <td class="font-9px" height="18" width="30" > 
+                  <div align="center"><font color="#0000FF">27</font></div>
+                </td>
+                <td width="61" class="font-9px" height="18" align="right"><font color="#0000FF">&nbsp;
+                 313,375.00
+                </font></td>                                                                     
+                <td width="61" class="font-9px" height="18" ><font color="#0000FF">&nbsp;บางชัน</font></td>
+                <td width="68" class="font-9px" height="18" ><font color="#0000FF">&nbsp;มีนบุรี</font></td>
+                <td width="71" class="font-9px" height="18" ><font color="#0000FF">&nbsp;กรุงเทพ</font></td>
+<!--                <td width="72" class="font-9px" height="18" > 
+                  <div align="right"><font color="#0000FF">313,375&nbsp;&nbsp;</font></div>
+                </td>
+-->
+              </tr>
+		
+              <tr onMouseOver="style.cursor='hand'; javascript:style.backgroundColor='#CBFA65'" onMouseOut="javascript:style.backgroundColor='#FFFFFF'" bgcolor="#FFFFFF"  onClick="window.open('asset_open.asp?law_suit_no=1090&law_suit_year=2548&deed_no=23928&addrno=78/402',null,'width=740,height=600,status=yes,toolbar=no,menubar=yes,location=no,scrollbars=yes,resizable=yes'); return false;" > 
+                <td width="50" class="font-9px" height="18"  > 
+                  <div align="left"><font color="#0000FF">19 - 1</font></div>
+                </td>
+                <td width="67" class="font-9px" height="18" > 
+                  <div align="left"><font color="#0000FF">&nbsp;1090/2548</font></div>
+                </td>
+                <td width="110" class="font-9px" height="18" > 
+                  <div align="left"><font color="#0000FF">&nbsp; ห้องชุด</font></div>
+                </td>
+                <td width="22" class="font-9px" height="18" > 
+                  <div align="center"><font color="#0000FF">0</font></div>
+                </td>
+                <td class="font-9px" height="18" width="25" > 
+                  <div align="center"><font color="#0000FF">0</font></div>
+                </td>
+                <td class="font-9px" height="18" width="30" > 
+                  <div align="center"><font color="#0000FF">27</font></div>
+                </td>
+                <td width="61" class="font-9px" height="18" align="right"><font color="#0000FF">&nbsp;
+                 299,750.00
+                </font></td>                                                                     
+                <td width="61" class="font-9px" height="18" ><font color="#0000FF">&nbsp;บางชัน</font></td>
+                <td width="68" class="font-9px" height="18" ><font color="#0000FF">&nbsp;มีนบุรี</font></td>
+                <td width="71" class="font-9px" height="18" ><font color="#0000FF">&nbsp;กรุงเทพ</font></td>
+<!--                <td width="72" class="font-9px" height="18" > 
+                  <div align="right"><font color="#0000FF">299,750&nbsp;&nbsp;</font></div>
+                </td>
+-->
+              </tr>
+		
+              <tr onMouseOver="style.cursor='hand'; javascript:style.backgroundColor='#CBFA65'" onMouseOut="javascript:style.backgroundColor='#FFFFFF'" bgcolor="#FFFFFF"  onClick="window.open('asset_open.asp?law_suit_no=ผบ.78&law_suit_year=2553&deed_no=984,13991&addrno=43/87',null,'width=740,height=600,status=yes,toolbar=no,menubar=yes,location=no,scrollbars=yes,resizable=yes'); return false;" > 
+                <td width="50" class="font-9px" height="18"  > 
+                  <div align="left"><font color="#0000FF">22 - 1</font></div>
+                </td>
+                <td width="67" class="font-9px" height="18" > 
+                  <div align="left"><font color="#0000FF">&nbsp;ผบ.78/2553</font></div>
+                </td>
+                <td width="110" class="font-9px" height="18" > 
+                  <div align="left"><font color="#0000FF">&nbsp; ห้องชุด</font></div>
+                </td>
+                <td width="22" class="font-9px" height="18" > 
+                  <div align="center"><font color="#0000FF">0</font></div>
+                </td>
+                <td class="font-9px" height="18" width="25" > 
+                  <div align="center"><font color="#0000FF">0</font></div>
+                </td>
+                <td class="font-9px" height="18" width="30" > 
+                  <div align="center"><font color="#0000FF">31</font></div>
+                </td>
+                <td width="61" class="font-9px" height="18" align="right"><font color="#0000FF">&nbsp;
+                 379,920.00
+                </font></td>                                                                     
+                <td width="61" class="font-9px" height="18" ><font color="#0000FF">&nbsp;บางชัน</font></td>
+                <td width="68" class="font-9px" height="18" ><font color="#0000FF">&nbsp;มีนบุรี</font></td>
+                <td width="71" class="font-9px" height="18" ><font color="#0000FF">&nbsp;กรุงเทพ</font></td>
+<!--                <td width="72" class="font-9px" height="18" > 
+                  <div align="right"><font color="#0000FF">379,920&nbsp;&nbsp;</font></div>
+                </td>
+-->
+              </tr>
+		
+              <tr onMouseOver="style.cursor='hand'; javascript:style.backgroundColor='#CBFA65'" onMouseOut="javascript:style.backgroundColor='#FFFFFF'" bgcolor="#FFFFFF"  onClick="window.open('asset_open.asp?law_suit_no=ย.2518&law_suit_year=2540&deed_no=19607,19608&addrno=301/64',null,'width=740,height=600,status=yes,toolbar=no,menubar=yes,location=no,scrollbars=yes,resizable=yes'); return false;" > 
+                <td width="50" class="font-9px" height="18"  > 
+                  <div align="left"><font color="#0000FF">24 - 1</font></div>
+                </td>
+                <td width="67" class="font-9px" height="18" > 
+                  <div align="left"><font color="#0000FF">&nbsp;ย.2518/2540</font></div>
+                </td>
+                <td width="110" class="font-9px" height="18" > 
+                  <div align="left"><font color="#0000FF">&nbsp; ห้องชุด</font></div>
+                </td>
+                <td width="22" class="font-9px" height="18" > 
+                  <div align="center"><font color="#0000FF">0</font></div>
+                </td>
+                <td class="font-9px" height="18" width="25" > 
+                  <div align="center"><font color="#0000FF">0</font></div>
+                </td>
+                <td class="font-9px" height="18" width="30" > 
+                  <div align="center"><font color="#0000FF">31</font></div>
+                </td>
+                <td width="61" class="font-9px" height="18" align="right"><font color="#0000FF">&nbsp;
+                 377,880.00
+                </font></td>                                                                     
+                <td width="61" class="font-9px" height="18" ><font color="#0000FF">&nbsp;มีนบุรี</font></td>
+                <td width="68" class="font-9px" height="18" ><font color="#0000FF">&nbsp;มีนบุรี</font></td>
+                <td width="71" class="font-9px" height="18" ><font color="#0000FF">&nbsp;กรุงเทพ</font></td>
+<!--                <td width="72" class="font-9px" height="18" > 
+                  <div align="right"><font color="#0000FF">380,000&nbsp;&nbsp;</font></div>
+                </td>
+-->
+              </tr>
+		
+              <tr onMouseOver="style.cursor='hand'; javascript:style.backgroundColor='#CBFA65'" onMouseOut="javascript:style.backgroundColor='#FFFFFF'" bgcolor="#FFFFFF"  onClick="window.open('asset_open.asp?law_suit_no=ผบ.5828&law_suit_year=2553&deed_no=1946&addrno=555/40',null,'width=740,height=600,status=yes,toolbar=no,menubar=yes,location=no,scrollbars=yes,resizable=yes'); return false;" > 
+                <td width="50" class="font-9px" height="18"  > 
+                  <div align="left"><font color="#0000FF">32 - 1</font></div>
+                </td>
+                <td width="67" class="font-9px" height="18" > 
+                  <div align="left"><font color="#0000FF">&nbsp;ผบ.5828/2553</font></div>
+                </td>
+                <td width="110" class="font-9px" height="18" > 
+                  <div align="left"><font color="#0000FF">&nbsp; ห้องชุด</font></div>
+                </td>
+                <td width="22" class="font-9px" height="18" > 
+                  <div align="center"><font color="#0000FF">0</font></div>
+                </td>
+                <td class="font-9px" height="18" width="25" > 
+                  <div align="center"><font color="#0000FF">0</font></div>
+                </td>
+                <td class="font-9px" height="18" width="30" > 
+                  <div align="center"><font color="#0000FF">32</font></div>
+                </td>
+                <td width="61" class="font-9px" height="18" align="right"><font color="#0000FF">&nbsp;
+                 279,140.00
+                </font></td>                                                                     
+                <td width="61" class="font-9px" height="18" ><font color="#0000FF">&nbsp;บางชัน</font></td>
+                <td width="68" class="font-9px" height="18" ><font color="#0000FF">&nbsp;มีนบุรี</font></td>
+                <td width="71" class="font-9px" height="18" ><font color="#0000FF">&nbsp;กรุงเทพ</font></td>
+<!--                <td width="72" class="font-9px" height="18" > 
+                  <div align="right"><font color="#0000FF">279,140&nbsp;&nbsp;</font></div>
+                </td>
+-->
+              </tr>
+		
+              <tr onMouseOver="style.cursor='hand'; javascript:style.backgroundColor='#CBFA65'" onMouseOut="javascript:style.backgroundColor='#FFFFFF'" bgcolor="#FFFFFF"  onClick="window.open('asset_open.asp?law_suit_no=ย.2425&law_suit_year=2544&deed_no=23928&addrno=78/1023',null,'width=740,height=600,status=yes,toolbar=no,menubar=yes,location=no,scrollbars=yes,resizable=yes'); return false;" > 
+                <td width="50" class="font-9px" height="18"  > 
+                  <div align="left"><font color="#0000FF">34 - 1</font></div>
+                </td>
+                <td width="67" class="font-9px" height="18" > 
+                  <div align="left"><font color="#0000FF">&nbsp;ย.2425/2544</font></div>
+                </td>
+                <td width="110" class="font-9px" height="18" > 
+                  <div align="left"><font color="#0000FF">&nbsp; ห้องชุด</font></div>
+                </td>
+                <td width="22" class="font-9px" height="18" > 
+                  <div align="center"><font color="#0000FF">0</font></div>
+                </td>
+                <td class="font-9px" height="18" width="25" > 
+                  <div align="center"><font color="#0000FF">0</font></div>
+                </td>
+                <td class="font-9px" height="18" width="30" > 
+                  <div align="center"><font color="#0000FF">27</font></div>
+                </td>
+                <td width="61" class="font-9px" height="18" align="right"><font color="#0000FF">&nbsp;
+                 327,000.00
+                </font></td>                                                                     
+                <td width="61" class="font-9px" height="18" ><font color="#0000FF">&nbsp;บางชัน</font></td>
+                <td width="68" class="font-9px" height="18" ><font color="#0000FF">&nbsp;มีนบุรี</font></td>
+                <td width="71" class="font-9px" height="18" ><font color="#0000FF">&nbsp;กรุงเทพ</font></td>
+<!--                <td width="72" class="font-9px" height="18" > 
+                  <div align="right"><font color="#0000FF">327,000&nbsp;&nbsp;</font></div>
+                </td>
+-->
+              </tr>
+		
+              <tr onMouseOver="style.cursor='hand'; javascript:style.backgroundColor='#CBFA65'" onMouseOut="javascript:style.backgroundColor='#FFFFFF'" bgcolor="#FFFFFF"  onClick="window.open('asset_open.asp?law_suit_no=ผบ.10652&law_suit_year=2552&deed_no=23928&addrno=78/296',null,'width=740,height=600,status=yes,toolbar=no,menubar=yes,location=no,scrollbars=yes,resizable=yes'); return false;" > 
+                <td width="50" class="font-9px" height="18"  > 
+                  <div align="left"><font color="#0000FF">38 - 1</font></div>
+                </td>
+                <td width="67" class="font-9px" height="18" > 
+                  <div align="left"><font color="#0000FF">&nbsp;ผบ.10652/2552</font></div>
+                </td>
+                <td width="110" class="font-9px" height="18" > 
+                  <div align="left"><font color="#0000FF">&nbsp; ห้องชุด</font></div>
+                </td>
+                <td width="22" class="font-9px" height="18" > 
+                  <div align="center"><font color="#0000FF">0</font></div>
+                </td>
+                <td class="font-9px" height="18" width="25" > 
+                  <div align="center"><font color="#0000FF">0</font></div>
+                </td>
+                <td class="font-9px" height="18" width="30" > 
+                  <div align="center"><font color="#0000FF">27</font></div>
+                </td>
+                <td width="61" class="font-9px" height="18" align="right"><font color="#0000FF">&nbsp;
+                 285,075.00
+                </font></td>                                                                     
+                <td width="61" class="font-9px" height="18" ><font color="#0000FF">&nbsp;บางชัน</font></td>
+                <td width="68" class="font-9px" height="18" ><font color="#0000FF">&nbsp;มีนบุรี</font></td>
+                <td width="71" class="font-9px" height="18" ><font color="#0000FF">&nbsp;กรุงเทพ</font></td>
+<!--                <td width="72" class="font-9px" height="18" > 
+                  <div align="right"><font color="#0000FF">285,075&nbsp;&nbsp;</font></div>
+                </td>
+-->
+              </tr>
+		
+              <tr onMouseOver="style.cursor='hand'; javascript:style.backgroundColor='#CBFA65'" onMouseOut="javascript:style.backgroundColor='#FFFFFF'" bgcolor="#FFFFFF"  onClick="window.open('asset_open.asp?law_suit_no=ม.2639&law_suit_year=2547&deed_no=26266&addrno=555/271',null,'width=740,height=600,status=yes,toolbar=no,menubar=yes,location=no,scrollbars=yes,resizable=yes'); return false;" > 
+                <td width="50" class="font-9px" height="18"  > 
+                  <div align="left"><font color="#0000FF">40 - 1</font></div>
+                </td>
+                <td width="67" class="font-9px" height="18" > 
+                  <div align="left"><font color="#0000FF">&nbsp;ม.2639/2547</font></div>
+                </td>
+                <td width="110" class="font-9px" height="18" > 
+                  <div align="left"><font color="#0000FF">&nbsp; ห้องชุด</font></div>
+                </td>
+                <td width="22" class="font-9px" height="18" > 
+                  <div align="center"><font color="#0000FF">0</font></div>
+                </td>
+                <td class="font-9px" height="18" width="25" > 
+                  <div align="center"><font color="#0000FF">0</font></div>
+                </td>
+                <td class="font-9px" height="18" width="30" > 
+                  <div align="center"><font color="#0000FF">32</font></div>
+                </td>
+                <td width="61" class="font-9px" height="18" align="right"><font color="#0000FF">&nbsp;
+                 262,080.00
+                </font></td>                                                                     
+                <td width="61" class="font-9px" height="18" ><font color="#0000FF">&nbsp;บางชัน</font></td>
+                <td width="68" class="font-9px" height="18" ><font color="#0000FF">&nbsp;มีนบุรี</font></td>
+                <td width="71" class="font-9px" height="18" ><font color="#0000FF">&nbsp;กรุงเทพ</font></td>
+<!--                <td width="72" class="font-9px" height="18" > 
+                  <div align="right"><font color="#0000FF">262,080&nbsp;&nbsp;</font></div>
+                </td>
+-->
+              </tr>
+		
+              <tr onMouseOver="style.cursor='hand'; javascript:style.backgroundColor='#CBFA65'" onMouseOut="javascript:style.backgroundColor='#FFFFFF'" bgcolor="#FFFFFF"  onClick="window.open('asset_open.asp?law_suit_no=ม.4347&law_suit_year=2550&deed_no=34531&addrno=69/669',null,'width=740,height=600,status=yes,toolbar=no,menubar=yes,location=no,scrollbars=yes,resizable=yes'); return false;" > 
+                <td width="50" class="font-9px" height="18"  > 
+                  <div align="left"><font color="#0000FF">45 - 1</font></div>
+                </td>
+                <td width="67" class="font-9px" height="18" > 
+                  <div align="left"><font color="#0000FF">&nbsp;ม.4347/2550</font></div>
+                </td>
+                <td width="110" class="font-9px" height="18" > 
+                  <div align="left"><font color="#0000FF">&nbsp; ห้องชุด</font></div>
+                </td>
+                <td width="22" class="font-9px" height="18" > 
+                  <div align="center"><font color="#0000FF">0</font></div>
+                </td>
+                <td class="font-9px" height="18" width="25" > 
+                  <div align="center"><font color="#0000FF">0</font></div>
+                </td>
+                <td class="font-9px" height="18" width="30" > 
+                  <div align="center"><font color="#0000FF">32</font></div>
+                </td>
+                <td width="61" class="font-9px" height="18" align="right"><font color="#0000FF">&nbsp;
+                 388,080.00
+                </font></td>                                                                     
+                <td width="61" class="font-9px" height="18" ><font color="#0000FF">&nbsp;บางชัน</font></td>
+                <td width="68" class="font-9px" height="18" ><font color="#0000FF">&nbsp;มีนบุรี</font></td>
+                <td width="71" class="font-9px" height="18" ><font color="#0000FF">&nbsp;กรุงเทพ</font></td>
+<!--                <td width="72" class="font-9px" height="18" > 
+                  <div align="right"><font color="#0000FF">388,080&nbsp;&nbsp;</font></div>
+                </td>
+-->
+              </tr>
+		
+              <tr onMouseOver="style.cursor='hand'; javascript:style.backgroundColor='#CBFA65'" onMouseOut="javascript:style.backgroundColor='#FFFFFF'" bgcolor="#FFFFFF"  onClick="window.open('asset_open.asp?law_suit_no=1118&law_suit_year=2541&deed_no=49691,49692&addrno=41/217',null,'width=740,height=600,status=yes,toolbar=no,menubar=yes,location=no,scrollbars=yes,resizable=yes'); return false;" > 
+                <td width="50" class="font-9px" height="18"  > 
+                  <div align="left"><font color="#0000FF">49 - 1</font></div>
+                </td>
+                <td width="67" class="font-9px" height="18" > 
+                  <div align="left"><font color="#0000FF">&nbsp;1118/2541</font></div>
+                </td>
+                <td width="110" class="font-9px" height="18" > 
+                  <div align="left"><font color="#0000FF">&nbsp; ห้องชุด</font></div>
+                </td>
+                <td width="22" class="font-9px" height="18" > 
+                  <div align="center"><font color="#0000FF">0</font></div>
+                </td>
+                <td class="font-9px" height="18" width="25" > 
+                  <div align="center"><font color="#0000FF">0</font></div>
+                </td>
+                <td class="font-9px" height="18" width="30" > 
+                  <div align="center"><font color="#0000FF">31</font></div>
+                </td>
+                <td width="61" class="font-9px" height="18" align="right"><font color="#0000FF">&nbsp;
+                 200,000.00
+                </font></td>                                                                     
+                <td width="61" class="font-9px" height="18" ><font color="#0000FF">&nbsp;แสนแสบ</font></td>
+                <td width="68" class="font-9px" height="18" ><font color="#0000FF">&nbsp;มีนบุรี</font></td>
+                <td width="71" class="font-9px" height="18" ><font color="#0000FF">&nbsp;กรุงเทพ</font></td>
+<!--                <td width="72" class="font-9px" height="18" > 
+                  <div align="right"><font color="#0000FF">&nbsp;&nbsp;</font></div>
+                </td>
+-->
+              </tr>
+		
+              <tr onMouseOver="style.cursor='hand'; javascript:style.backgroundColor='#CBFA65'" onMouseOut="javascript:style.backgroundColor='#FFFFFF'" bgcolor="#FFFFFF"  onClick="window.open('asset_open.asp?law_suit_no=ผบ.10808&law_suit_year=2555&deed_no=68707,70331&addrno=16/31',null,'width=740,height=600,status=yes,toolbar=no,menubar=yes,location=no,scrollbars=yes,resizable=yes'); return false;" > 
+                <td width="50" class="font-9px" height="18"  > 
+                  <div align="left"><font color="#0000FF">57 - 1</font></div>
+                </td>
+                <td width="67" class="font-9px" height="18" > 
+                  <div align="left"><font color="#0000FF">&nbsp;ผบ.10808/2555</font></div>
+                </td>
+                <td width="110" class="font-9px" height="18" > 
+                  <div align="left"><font color="#0000FF">&nbsp; ห้องชุด</font></div>
+                </td>
+                <td width="22" class="font-9px" height="18" > 
+                  <div align="center"><font color="#0000FF">0</font></div>
+                </td>
+                <td class="font-9px" height="18" width="25" > 
+                  <div align="center"><font color="#0000FF">0</font></div>
+                </td>
+                <td class="font-9px" height="18" width="30" > 
+                  <div align="center"><font color="#0000FF">33</font></div>
+                </td>
+                <td width="61" class="font-9px" height="18" align="right"><font color="#0000FF">&nbsp;
+                 333,135.00
+                </font></td>                                                                     
+                <td width="61" class="font-9px" height="18" ><font color="#0000FF">&nbsp;มีนบุรี</font></td>
+                <td width="68" class="font-9px" height="18" ><font color="#0000FF">&nbsp;มีนบุรี</font></td>
+                <td width="71" class="font-9px" height="18" ><font color="#0000FF">&nbsp;กรุงเทพ</font></td>
+<!--                <td width="72" class="font-9px" height="18" > 
+                  <div align="right"><font color="#0000FF">&nbsp;&nbsp;</font></div>
+                </td>
+-->
+              </tr>
+		
+              <tr onMouseOver="style.cursor='hand'; javascript:style.backgroundColor='#CBFA65'" onMouseOut="javascript:style.backgroundColor='#FFFFFF'" bgcolor="#FFFFFF"  onClick="window.open('asset_open.asp?law_suit_no=ผบ.3916&law_suit_year=2558&deed_no=7622,7623,7624&addrno=126/127',null,'width=740,height=600,status=yes,toolbar=no,menubar=yes,location=no,scrollbars=yes,resizable=yes'); return false;" > 
+                <td width="50" class="font-9px" height="18"  > 
+                  <div align="left"><font color="#0000FF">60 - 1</font></div>
+                </td>
+                <td width="67" class="font-9px" height="18" > 
+                  <div align="left"><font color="#0000FF">&nbsp;ผบ.3916/2558</font></div>
+                </td>
+                <td width="110" class="font-9px" height="18" > 
+                  <div align="left"><font color="#0000FF">&nbsp; ห้องชุด</font></div>
+                </td>
+                <td width="22" class="font-9px" height="18" > 
+                  <div align="center"><font color="#0000FF">0</font></div>
+                </td>
+                <td class="font-9px" height="18" width="25" > 
+                  <div align="center"><font color="#0000FF">0</font></div>
+                </td>
+                <td class="font-9px" height="18" width="30" > 
+                  <div align="center"><font color="#0000FF">34</font></div>
+                </td>
+                <td width="61" class="font-9px" height="18" align="right"><font color="#0000FF">&nbsp;
+                 413,520.00
+                </font></td>                                                                     
+                <td width="61" class="font-9px" height="18" ><font color="#0000FF">&nbsp;มีนบุรี</font></td>
+                <td width="68" class="font-9px" height="18" ><font color="#0000FF">&nbsp;มีนบุรี</font></td>
+                <td width="71" class="font-9px" height="18" ><font color="#0000FF">&nbsp;กรุงเทพ</font></td>
+<!--                <td width="72" class="font-9px" height="18" > 
+                  <div align="right"><font color="#0000FF">&nbsp;&nbsp;</font></div>
+                </td>
+-->
+              </tr>
+		
+              <tr onMouseOver="style.cursor='hand'; javascript:style.backgroundColor='#CBFA65'" onMouseOut="javascript:style.backgroundColor='#FFFFFF'" bgcolor="#FFFFFF"  onClick="window.open('asset_open.asp?law_suit_no=ผบ.4405&law_suit_year=2557&deed_no=23928&addrno=78/1536',null,'width=740,height=600,status=yes,toolbar=no,menubar=yes,location=no,scrollbars=yes,resizable=yes'); return false;" > 
+                <td width="50" class="font-9px" height="18"  > 
+                  <div align="left"><font color="#0000FF">67 - 1</font></div>
+                </td>
+                <td width="67" class="font-9px" height="18" > 
+                  <div align="left"><font color="#0000FF">&nbsp;ผบ.4405/2557</font></div>
+                </td>
+                <td width="110" class="font-9px" height="18" > 
+                  <div align="left"><font color="#0000FF">&nbsp; ห้องชุด</font></div>
+                </td>
+                <td width="22" class="font-9px" height="18" > 
+                  <div align="center"><font color="#0000FF">0</font></div>
+                </td>
+                <td class="font-9px" height="18" width="25" > 
+                  <div align="center"><font color="#0000FF">0</font></div>
+                </td>
+                <td class="font-9px" height="18" width="30" > 
+                  <div align="center"><font color="#0000FF">27</font></div>
+                </td>
+                <td width="61" class="font-9px" height="18" align="right"><font color="#0000FF">&nbsp;
+                 327,000.00
+                </font></td>                                                                     
+                <td width="61" class="font-9px" height="18" ><font color="#0000FF">&nbsp;บางชัน</font></td>
+                <td width="68" class="font-9px" height="18" ><font color="#0000FF">&nbsp;มีนบุรี</font></td>
+                <td width="71" class="font-9px" height="18" ><font color="#0000FF">&nbsp;กรุงเทพ</font></td>
+<!--                <td width="72" class="font-9px" height="18" > 
+                  <div align="right"><font color="#0000FF">&nbsp;&nbsp;</font></div>
+                </td>
+-->
+              </tr>
+		
+              <tr onMouseOver="style.cursor='hand'; javascript:style.backgroundColor='#CBFA65'" onMouseOut="javascript:style.backgroundColor='#FFFFFF'" bgcolor="#FFFFFF"  onClick="window.open('asset_open.asp?law_suit_no=ผบ.471&law_suit_year=2556&deed_no=34531&addrno=69/565',null,'width=740,height=600,status=yes,toolbar=no,menubar=yes,location=no,scrollbars=yes,resizable=yes'); return false;" > 
+                <td width="50" class="font-9px" height="18"  > 
+                  <div align="left"><font color="#0000FF">75 - 1</font></div>
+                </td>
+                <td width="67" class="font-9px" height="18" > 
+                  <div align="left"><font color="#0000FF">&nbsp;ผบ.471/2556</font></div>
+                </td>
+                <td width="110" class="font-9px" height="18" > 
+                  <div align="left"><font color="#0000FF">&nbsp; ห้องชุด</font></div>
+                </td>
+                <td width="22" class="font-9px" height="18" > 
+                  <div align="center"><font color="#0000FF">0</font></div>
+                </td>
+                <td class="font-9px" height="18" width="25" > 
+                  <div align="center"><font color="#0000FF">0</font></div>
+                </td>
+                <td class="font-9px" height="18" width="30" > 
+                  <div align="center"><font color="#0000FF">32</font></div>
+                </td>
+                <td width="61" class="font-9px" height="18" align="right"><font color="#0000FF">&nbsp;
+                 372,025.00
+                </font></td>                                                                     
+                <td width="61" class="font-9px" height="18" ><font color="#0000FF">&nbsp;บางชัน</font></td>
+                <td width="68" class="font-9px" height="18" ><font color="#0000FF">&nbsp;มีนบุรี</font></td>
+                <td width="71" class="font-9px" height="18" ><font color="#0000FF">&nbsp;กรุงเทพ</font></td>
+<!--                <td width="72" class="font-9px" height="18" > 
+                  <div align="right"><font color="#0000FF">372,025&nbsp;&nbsp;</font></div>
+                </td>
+-->
+              </tr>
+		
+              <tr onMouseOver="style.cursor='hand'; javascript:style.backgroundColor='#CBFA65'" onMouseOut="javascript:style.backgroundColor='#FFFFFF'" bgcolor="#FFFFFF"  onClick="window.open('asset_open.asp?law_suit_no=ผบ.1246&law_suit_year=2556&deed_no=23928&addrno=78/459',null,'width=740,height=600,status=yes,toolbar=no,menubar=yes,location=no,scrollbars=yes,resizable=yes'); return false;" > 
+                <td width="50" class="font-9px" height="18"  > 
+                  <div align="left"><font color="#0000FF">76 - 1</font></div>
+                </td>
+                <td width="67" class="font-9px" height="18" > 
+                  <div align="left"><font color="#0000FF">&nbsp;ผบ.1246/2556</font></div>
+                </td>
+                <td width="110" class="font-9px" height="18" > 
+                  <div align="left"><font color="#0000FF">&nbsp; ห้องชุด</font></div>
+                </td>
+                <td width="22" class="font-9px" height="18" > 
+                  <div align="center"><font color="#0000FF">0</font></div>
+                </td>
+                <td class="font-9px" height="18" width="25" > 
+                  <div align="center"><font color="#0000FF">0</font></div>
+                </td>
+                <td class="font-9px" height="18" width="30" > 
+                  <div align="center"><font color="#0000FF">27</font></div>
+                </td>
+                <td width="61" class="font-9px" height="18" align="right"><font color="#0000FF">&nbsp;
+                 313,375.00
+                </font></td>                                                                     
+                <td width="61" class="font-9px" height="18" ><font color="#0000FF">&nbsp;บางชัน</font></td>
+                <td width="68" class="font-9px" height="18" ><font color="#0000FF">&nbsp;มีนบุรี</font></td>
+                <td width="71" class="font-9px" height="18" ><font color="#0000FF">&nbsp;กรุงเทพ</font></td>
+<!--                <td width="72" class="font-9px" height="18" > 
+                  <div align="right"><font color="#0000FF">313,375&nbsp;&nbsp;</font></div>
+                </td>
+-->
+              </tr>
+		
+              <tr onMouseOver="style.cursor='hand'; javascript:style.backgroundColor='#CBFA65'" onMouseOut="javascript:style.backgroundColor='#FFFFFF'" bgcolor="#FFFFFF"  onClick="window.open('asset_open.asp?law_suit_no=ผบ.466&law_suit_year=2559&deed_no=70375&addrno=68/35',null,'width=740,height=600,status=yes,toolbar=no,menubar=yes,location=no,scrollbars=yes,resizable=yes'); return false;" > 
+                <td width="50" class="font-9px" height="18"  > 
+                  <div align="left"><font color="#0000FF">77 - 1</font></div>
+                </td>
+                <td width="67" class="font-9px" height="18" > 
+                  <div align="left"><font color="#0000FF">&nbsp;ผบ.466/2559</font></div>
+                </td>
+                <td width="110" class="font-9px" height="18" > 
+                  <div align="left"><font color="#0000FF">&nbsp; ห้องชุด</font></div>
+                </td>
+                <td width="22" class="font-9px" height="18" > 
+                  <div align="center"><font color="#0000FF">0</font></div>
+                </td>
+                <td class="font-9px" height="18" width="25" > 
+                  <div align="center"><font color="#0000FF">0</font></div>
+                </td>
+                <td class="font-9px" height="18" width="30" > 
+                  <div align="center"><font color="#0000FF">24</font></div>
+                </td>
+                <td width="61" class="font-9px" height="18" align="right"><font color="#0000FF">&nbsp;
+                 238,293.00
+                </font></td>                                                                     
+                <td width="61" class="font-9px" height="18" ><font color="#0000FF">&nbsp;มีนบุรี</font></td>
+                <td width="68" class="font-9px" height="18" ><font color="#0000FF">&nbsp;มีนบุรี</font></td>
+                <td width="71" class="font-9px" height="18" ><font color="#0000FF">&nbsp;กรุงเทพ</font></td>
+<!--                <td width="72" class="font-9px" height="18" > 
+                  <div align="right"><font color="#0000FF">&nbsp;&nbsp;</font></div>
+                </td>
+-->
+              </tr>
+		
+              <tr onMouseOver="style.cursor='hand'; javascript:style.backgroundColor='#CBFA65'" onMouseOut="javascript:style.backgroundColor='#FFFFFF'" bgcolor="#FFFFFF"  onClick="window.open('asset_open.asp?law_suit_no=ผบ.2677&law_suit_year=2555&deed_no=70375&addrno=76/7',null,'width=740,height=600,status=yes,toolbar=no,menubar=yes,location=no,scrollbars=yes,resizable=yes'); return false;" > 
+                <td width="50" class="font-9px" height="18"  > 
+                  <div align="left"><font color="#0000FF">84 - 1</font></div>
+                </td>
+                <td width="67" class="font-9px" height="18" > 
+                  <div align="left"><font color="#0000FF">&nbsp;ผบ.2677/2555</font></div>
+                </td>
+                <td width="110" class="font-9px" height="18" > 
+                  <div align="left"><font color="#0000FF">&nbsp; ห้องชุด</font></div>
+                </td>
+                <td width="22" class="font-9px" height="18" > 
+                  <div align="center"><font color="#0000FF">0</font></div>
+                </td>
+                <td class="font-9px" height="18" width="25" > 
+                  <div align="center"><font color="#0000FF">0</font></div>
+                </td>
+                <td class="font-9px" height="18" width="30" > 
+                  <div align="center"><font color="#0000FF">33</font></div>
+                </td>
+                <td width="61" class="font-9px" height="18" align="right"><font color="#0000FF">&nbsp;
+                 346,595.00
+                </font></td>                                                                     
+                <td width="61" class="font-9px" height="18" ><font color="#0000FF">&nbsp;มีนบุรี</font></td>
+                <td width="68" class="font-9px" height="18" ><font color="#0000FF">&nbsp;มีนบุรี</font></td>
+                <td width="71" class="font-9px" height="18" ><font color="#0000FF">&nbsp;กรุงเทพ</font></td>
+<!--                <td width="72" class="font-9px" height="18" > 
+                  <div align="right"><font color="#0000FF">&nbsp;&nbsp;</font></div>
+                </td>
+-->
+              </tr>
+		
+              <tr onMouseOver="style.cursor='hand'; javascript:style.backgroundColor='#CBFA65'" onMouseOut="javascript:style.backgroundColor='#FFFFFF'" bgcolor="#FFFFFF"  onClick="window.open('asset_open.asp?law_suit_no=2835&law_suit_year=2540&deed_no=49692,  49691&addrno=41/201',null,'width=740,height=600,status=yes,toolbar=no,menubar=yes,location=no,scrollbars=yes,resizable=yes'); return false;" > 
+                <td width="50" class="font-9px" height="18"  > 
+                  <div align="left"><font color="#0000FF">85 - 1</font></div>
+                </td>
+                <td width="67" class="font-9px" height="18" > 
+                  <div align="left"><font color="#0000FF">&nbsp;2835/2540</font></div>
+                </td>
+                <td width="110" class="font-9px" height="18" > 
+                  <div align="left"><font color="#0000FF">&nbsp; ห้องชุด</font></div>
+                </td>
+                <td width="22" class="font-9px" height="18" > 
+                  <div align="center"><font color="#0000FF">0</font></div>
+                </td>
+                <td class="font-9px" height="18" width="25" > 
+                  <div align="center"><font color="#0000FF">0</font></div>
+                </td>
+                <td class="font-9px" height="18" width="30" > 
+                  <div align="center"><font color="#0000FF">29</font></div>
+                </td>
+                <td width="61" class="font-9px" height="18" align="right"><font color="#0000FF">&nbsp;
+                 282,625.00
+                </font></td>                                                                     
+                <td width="61" class="font-9px" height="18" ><font color="#0000FF">&nbsp;แสนแสบ</font></td>
+                <td width="68" class="font-9px" height="18" ><font color="#0000FF">&nbsp;มีนบุรี</font></td>
+                <td width="71" class="font-9px" height="18" ><font color="#0000FF">&nbsp;กรุงเทพ</font></td>
+<!--                <td width="72" class="font-9px" height="18" > 
+                  <div align="right"><font color="#0000FF">282,625&nbsp;&nbsp;</font></div>
+                </td>
+-->
+              </tr>
+		
+              <tr onMouseOver="style.cursor='hand'; javascript:style.backgroundColor='#CBFA65'" onMouseOut="javascript:style.backgroundColor='#FFFFFF'" bgcolor="#FFFFFF"  onClick="window.open('asset_open.asp?law_suit_no=29016&law_suit_year=2540&deed_no=26266&addrno=555/230',null,'width=740,height=600,status=yes,toolbar=no,menubar=yes,location=no,scrollbars=yes,resizable=yes'); return false;" > 
+                <td width="50" class="font-9px" height="18"  > 
+                  <div align="left"><font color="#0000FF">88 - 1</font></div>
+                </td>
+                <td width="67" class="font-9px" height="18" > 
+                  <div align="left"><font color="#0000FF">&nbsp;29016/2540</font></div>
+                </td>
+                <td width="110" class="font-9px" height="18" > 
+                  <div align="left"><font color="#0000FF">&nbsp; ห้องชุด</font></div>
+                </td>
+                <td width="22" class="font-9px" height="18" > 
+                  <div align="center"><font color="#0000FF">0</font></div>
+                </td>
+                <td class="font-9px" height="18" width="25" > 
+                  <div align="center"><font color="#0000FF">0</font></div>
+                </td>
+                <td class="font-9px" height="18" width="30" > 
+                  <div align="center"><font color="#0000FF">32</font></div>
+                </td>
+                <td width="61" class="font-9px" height="18" align="right"><font color="#0000FF">&nbsp;
+                 278,460.00
+                </font></td>                                                                     
+                <td width="61" class="font-9px" height="18" ><font color="#0000FF">&nbsp;บางชัน</font></td>
+                <td width="68" class="font-9px" height="18" ><font color="#0000FF">&nbsp;มีนบุรี</font></td>
+                <td width="71" class="font-9px" height="18" ><font color="#0000FF">&nbsp;กรุงเทพ</font></td>
+<!--                <td width="72" class="font-9px" height="18" > 
+                  <div align="right"><font color="#0000FF">278,460&nbsp;&nbsp;</font></div>
+                </td>
+-->
+              </tr>
+		
+              <tr onMouseOver="style.cursor='hand'; javascript:style.backgroundColor='#CBFA65'" onMouseOut="javascript:style.backgroundColor='#FFFFFF'" bgcolor="#FFFFFF"  onClick="window.open('asset_open.asp?law_suit_no=ธ.12061&law_suit_year=2541&deed_no=1946&addrno=555/117',null,'width=740,height=600,status=yes,toolbar=no,menubar=yes,location=no,scrollbars=yes,resizable=yes'); return false;" > 
+                <td width="50" class="font-9px" height="18"  > 
+                  <div align="left"><font color="#0000FF">89 - 1</font></div>
+                </td>
+                <td width="67" class="font-9px" height="18" > 
+                  <div align="left"><font color="#0000FF">&nbsp;ธ.12061/2541</font></div>
+                </td>
+                <td width="110" class="font-9px" height="18" > 
+                  <div align="left"><font color="#0000FF">&nbsp; ห้องชุด</font></div>
+                </td>
+                <td width="22" class="font-9px" height="18" > 
+                  <div align="center"><font color="#0000FF">0</font></div>
+                </td>
+                <td class="font-9px" height="18" width="25" > 
+                  <div align="center"><font color="#0000FF">0</font></div>
+                </td>
+                <td class="font-9px" height="18" width="30" > 
+                  <div align="center"><font color="#0000FF">32</font></div>
+                </td>
+                <td width="61" class="font-9px" height="18" align="right"><font color="#0000FF">&nbsp;
+                 246,300.00
+                </font></td>                                                                     
+                <td width="61" class="font-9px" height="18" ><font color="#0000FF">&nbsp;บางชัน</font></td>
+                <td width="68" class="font-9px" height="18" ><font color="#0000FF">&nbsp;มีนบุรี</font></td>
+                <td width="71" class="font-9px" height="18" ><font color="#0000FF">&nbsp;กรุงเทพ</font></td>
+<!--                <td width="72" class="font-9px" height="18" > 
+                  <div align="right"><font color="#0000FF">246,300&nbsp;&nbsp;</font></div>
+                </td>
+-->
+              </tr>
+		
+              <tr onMouseOver="style.cursor='hand'; javascript:style.backgroundColor='#CBFA65'" onMouseOut="javascript:style.backgroundColor='#FFFFFF'" bgcolor="#FFFFFF"  onClick="window.open('asset_open.asp?law_suit_no=ธ.6186&law_suit_year=2541&deed_no=49691-49692&addrno=42/411',null,'width=740,height=600,status=yes,toolbar=no,menubar=yes,location=no,scrollbars=yes,resizable=yes'); return false;" > 
+                <td width="50" class="font-9px" height="18"  > 
+                  <div align="left"><font color="#0000FF">93 - 1</font></div>
+                </td>
+                <td width="67" class="font-9px" height="18" > 
+                  <div align="left"><font color="#0000FF">&nbsp;ธ.6186/2541</font></div>
+                </td>
+                <td width="110" class="font-9px" height="18" > 
+                  <div align="left"><font color="#0000FF">&nbsp; ห้องชุด</font></div>
+                </td>
+                <td width="22" class="font-9px" height="18" > 
+                  <div align="center"><font color="#0000FF">0</font></div>
+                </td>
+                <td class="font-9px" height="18" width="25" > 
+                  <div align="center"><font color="#0000FF">0</font></div>
+                </td>
+                <td class="font-9px" height="18" width="30" > 
+                  <div align="center"><font color="#0000FF">26</font></div>
+                </td>
+                <td width="61" class="font-9px" height="18" align="right"><font color="#0000FF">&nbsp;
+                 210,000.00
+                </font></td>                                                                     
+                <td width="61" class="font-9px" height="18" ><font color="#0000FF">&nbsp;แสนแสบ</font></td>
+                <td width="68" class="font-9px" height="18" ><font color="#0000FF">&nbsp;มีนบุรี</font></td>
+                <td width="71" class="font-9px" height="18" ><font color="#0000FF">&nbsp;กรุงเทพ</font></td>
+<!--                <td width="72" class="font-9px" height="18" > 
+                  <div align="right"><font color="#0000FF">210,000&nbsp;&nbsp;</font></div>
+                </td>
+-->
+              </tr>
+		
+              <tr onMouseOver="style.cursor='hand'; javascript:style.backgroundColor='#CBFA65'" onMouseOut="javascript:style.backgroundColor='#FFFFFF'" bgcolor="#FFFFFF"  onClick="window.open('asset_open.asp?law_suit_no=ธ.2368&law_suit_year=2544&deed_no=23928&addrno=78/405',null,'width=740,height=600,status=yes,toolbar=no,menubar=yes,location=no,scrollbars=yes,resizable=yes'); return false;" > 
+                <td width="50" class="font-9px" height="18"  > 
+                  <div align="left"><font color="#0000FF">109 - 1</font></div>
+                </td>
+                <td width="67" class="font-9px" height="18" > 
+                  <div align="left"><font color="#0000FF">&nbsp;ธ.2368/2544</font></div>
+                </td>
+                <td width="110" class="font-9px" height="18" > 
+                  <div align="left"><font color="#0000FF">&nbsp; ห้องชุด</font></div>
+                </td>
+                <td width="22" class="font-9px" height="18" > 
+                  <div align="center"><font color="#0000FF">0</font></div>
+                </td>
+                <td class="font-9px" height="18" width="25" > 
+                  <div align="center"><font color="#0000FF">0</font></div>
+                </td>
+                <td class="font-9px" height="18" width="30" > 
+                  <div align="center"><font color="#0000FF">27</font></div>
+                </td>
+                <td width="61" class="font-9px" height="18" align="right"><font color="#0000FF">&nbsp;
+                 299,750.00
+                </font></td>                                                                     
+                <td width="61" class="font-9px" height="18" ><font color="#0000FF">&nbsp;บางชัน</font></td>
+                <td width="68" class="font-9px" height="18" ><font color="#0000FF">&nbsp;มีนบุรี</font></td>
+                <td width="71" class="font-9px" height="18" ><font color="#0000FF">&nbsp;กรุงเทพ</font></td>
+<!--                <td width="72" class="font-9px" height="18" > 
+                  <div align="right"><font color="#0000FF">299,750&nbsp;&nbsp;</font></div>
+                </td>
+-->
+              </tr>
+		
+              <tr onMouseOver="style.cursor='hand'; javascript:style.backgroundColor='#CBFA65'" onMouseOut="javascript:style.backgroundColor='#FFFFFF'" bgcolor="#FFFFFF"  onClick="window.open('asset_open.asp?law_suit_no=ผบ.2228&law_suit_year=2554&deed_no=34531&addrno=69/700',null,'width=740,height=600,status=yes,toolbar=no,menubar=yes,location=no,scrollbars=yes,resizable=yes'); return false;" > 
+                <td width="50" class="font-9px" height="18"  > 
+                  <div align="left"><font color="#0000FF">112 - 1</font></div>
+                </td>
+                <td width="67" class="font-9px" height="18" > 
+                  <div align="left"><font color="#0000FF">&nbsp;ผบ.2228/2554</font></div>
+                </td>
+                <td width="110" class="font-9px" height="18" > 
+                  <div align="left"><font color="#0000FF">&nbsp; ห้องชุด</font></div>
+                </td>
+                <td width="22" class="font-9px" height="18" > 
+                  <div align="center"><font color="#0000FF">0</font></div>
+                </td>
+                <td class="font-9px" height="18" width="25" > 
+                  <div align="center"><font color="#0000FF">0</font></div>
+                </td>
+                <td class="font-9px" height="18" width="30" > 
+                  <div align="center"><font color="#0000FF">32</font></div>
+                </td>
+                <td width="61" class="font-9px" height="18" align="right"><font color="#0000FF">&nbsp;
+                 388,080.00
+                </font></td>                                                                     
+                <td width="61" class="font-9px" height="18" ><font color="#0000FF">&nbsp;บางชัน</font></td>
+                <td width="68" class="font-9px" height="18" ><font color="#0000FF">&nbsp;มีนบุรี</font></td>
+                <td width="71" class="font-9px" height="18" ><font color="#0000FF">&nbsp;กรุงเทพ</font></td>
+<!--                <td width="72" class="font-9px" height="18" > 
+                  <div align="right"><font color="#0000FF">&nbsp;&nbsp;</font></div>
+                </td>
+-->
+              </tr>
+		
+              <tr onMouseOver="style.cursor='hand'; javascript:style.backgroundColor='#CBFA65'" onMouseOut="javascript:style.backgroundColor='#FFFFFF'" bgcolor="#FFFFFF"  onClick="window.open('asset_open.asp?law_suit_no=ผบ.747&law_suit_year=2559&deed_no=34531&addrno=69/621',null,'width=740,height=600,status=yes,toolbar=no,menubar=yes,location=no,scrollbars=yes,resizable=yes'); return false;" > 
+                <td width="50" class="font-9px" height="18"  > 
+                  <div align="left"><font color="#0000FF">142 - 1</font></div>
+                </td>
+                <td width="67" class="font-9px" height="18" > 
+                  <div align="left"><font color="#0000FF">&nbsp;ผบ.747/2559</font></div>
+                </td>
+                <td width="110" class="font-9px" height="18" > 
+                  <div align="left"><font color="#0000FF">&nbsp; ห้องชุด</font></div>
+                </td>
+                <td width="22" class="font-9px" height="18" > 
+                  <div align="center"><font color="#0000FF">0</font></div>
+                </td>
+                <td class="font-9px" height="18" width="25" > 
+                  <div align="center"><font color="#0000FF">0</font></div>
+                </td>
+                <td class="font-9px" height="18" width="30" > 
+                  <div align="center"><font color="#0000FF">37</font></div>
+                </td>
+                <td width="61" class="font-9px" height="18" align="right"><font color="#0000FF">&nbsp;
+                 444,600.00
+                </font></td>                                                                     
+                <td width="61" class="font-9px" height="18" ><font color="#0000FF">&nbsp;บางชัน</font></td>
+                <td width="68" class="font-9px" height="18" ><font color="#0000FF">&nbsp;มีนบุรี</font></td>
+                <td width="71" class="font-9px" height="18" ><font color="#0000FF">&nbsp;กรุงเทพ</font></td>
+<!--                <td width="72" class="font-9px" height="18" > 
+                  <div align="right"><font color="#0000FF">&nbsp;&nbsp;</font></div>
+                </td>
+-->
+              </tr>
+		
+              <tr onMouseOver="style.cursor='hand'; javascript:style.backgroundColor='#CBFA65'" onMouseOut="javascript:style.backgroundColor='#FFFFFF'" bgcolor="#FFFFFF"  onClick="window.open('asset_open.asp?law_suit_no=ผบ.12234&law_suit_year=2559&deed_no=984,13991&addrno=43/4',null,'width=740,height=600,status=yes,toolbar=no,menubar=yes,location=no,scrollbars=yes,resizable=yes'); return false;" > 
+                <td width="50" class="font-9px" height="18"  > 
+                  <div align="left"><font color="#0000FF">143 - 1</font></div>
+                </td>
+                <td width="67" class="font-9px" height="18" > 
+                  <div align="left"><font color="#0000FF">&nbsp;ผบ.12234/2559</font></div>
+                </td>
+                <td width="110" class="font-9px" height="18" > 
+                  <div align="left"><font color="#0000FF">&nbsp; ห้องชุด</font></div>
+                </td>
+                <td width="22" class="font-9px" height="18" > 
+                  <div align="center"><font color="#0000FF">0</font></div>
+                </td>
+                <td class="font-9px" height="18" width="25" > 
+                  <div align="center"><font color="#0000FF">0</font></div>
+                </td>
+                <td class="font-9px" height="18" width="30" > 
+                  <div align="center"><font color="#0000FF">31</font></div>
+                </td>
+                <td width="61" class="font-9px" height="18" align="right"><font color="#0000FF">&nbsp;
+                 332,430.00
+                </font></td>                                                                     
+                <td width="61" class="font-9px" height="18" ><font color="#0000FF">&nbsp;บางชัน</font></td>
+                <td width="68" class="font-9px" height="18" ><font color="#0000FF">&nbsp;มีนบุรี</font></td>
+                <td width="71" class="font-9px" height="18" ><font color="#0000FF">&nbsp;กรุงเทพ</font></td>
+<!--                <td width="72" class="font-9px" height="18" > 
+                  <div align="right"><font color="#0000FF">&nbsp;&nbsp;</font></div>
+                </td>
+-->
+              </tr>
+		
+              <!-- END TABLE_ROW_TEMPLATE -->
+            </table>
+          </td>
+        </tr>
+      </table>
+      <table width="597" border="0" align="center" cellspacing="0" cellpadding="0" height="22">
+        <tr> 
+          <td class="font-default-14px" width="1%" height="27">&nbsp;</td>
+          <td class="font-default-14px" width="37%" height="27"> 
+            <div align="left">ผลการค้นหา พบ<font color="#0000FF">&nbsp;&nbsp;35&nbsp;&nbsp;</font> 
+              รายการ หน้าที่ 1/1</div>
+          </td>
+          <td class="font-default-14px" width="60%" height="27"> 
+            <div align="right">
+<a href="asset_search_province.asp?search_asset_type_id=002&search_tumbol=&search_ampur=มีนบุรี&search_province=กรุงเทพ&search_sub_province=&search_price_begin=&search_price_end=1500000&search_bid_date=&page=1">1</a>&nbsp;&nbsp;</div>
+          </td>
+          <td class="font-default-14px" width="2%" height="27">&nbsp;</td>
+        </tr>
+      </table>
+      <p>&nbsp;</p>
+    </td>
+    <td width="231" valign="top"><FORM method="post" action="asset_search_province.asp" name="aspform">
+      <table width="56%" border="0" cellspacing="0" cellpadding="0" align="center">
+        <tr> 
+          <td height="15" width="7%"><img src="img/search_frame_01.gif" width="14" height="36"></td>
+          <td width="87%"><img src="img/search_frame_02.gif" width="100%" height="36"></td>
+          <td height="15" width="6%"><img src="img/search_frame_03.gif" width="12" height="36"></td>
+        </tr>
+        <tr> 
+          <td background="img/search_frame_04.gif" width="7%">&nbsp;</td>
+          <td bgcolor="E0E5EB" valign="top" width="87%"> 
+            <table width="100%" border="0" cellspacing="0" cellpadding="0" align="center">
+              <tr> 
+                <td class="font-default-14px" colspan="2"> 
+                  <div align="center">ตามประเภท</div>
+                </td>
+              </tr>
+              <tr> 
+                <td class="font-default-14px" colspan="2"> 
+                  <div align="center"> 
+                    <select name="asset_type" size="1">
+                      <!--option value="n/a" selected>----- เลือก ทุกประเภท -----<!--/option>
+                      <!-- BEGIN SELECT_TYPE_TEMPLATE -->
+
+	<option value="001" > ที่ดินว่างเปล่า</option>
+
+	<option value="0010" > หุ้น</option>
+
+	<option value="0011" > หน่วยลงทุน</option>
+
+	<option value="0012" > พันธบัตร</option>
+
+	<option value="0013" > ใบสำคัญ</option>
+
+	<option value="0014" > สลากออมสิน</option>
+
+	<option value="002" selected> ห้องชุด</option>
+
+	<option value="003" > ที่ดินพร้อมสิ่งปลูกสร้าง</option>
+
+	<option value="004" > กรรมสิทธิ์ห้องชุด</option>
+
+	<option value="005" > สิทธิการเช่า</option>
+
+	<option value="006" > สิทธิการเช่าอาคารพาณิชย์</option>
+
+	<option value="007" > สิทธิการเช่าที่ดิน</option>
+
+	<option value="008" > ทรัพย์สินต่างๆ</option>
+
+	<option value="009" > สิ่งปลูกสร้าง</option>
+
+	<option value="010" > สิทธิการเช่าที่ดินฯ</option>
+
+	<option value="011" > สิทธิการเช่าสิ่งปลูกสร้าง</option>
+
+	<option value="012" > บัตรธนาคาร(เป็นเงินที่ชำระหนี้ได้ตามกฎหมาย)</option>
+
+	<option value="013" > สิทธิการเช่าอาคารราชพัสดุ</option>
+
+	<option value="014" > สิทธิการเช่าอาคาร</option>
+
+	<option value="016" > สิทธิการไถ่คืน</option>
+
+	<option value="017" > สิทธิการเช่าช่วงที่ดิน</option>
+
+	<option value="018" > อาวุธปืน</option>
+
+                      <!-- END SELECT_TYPE_TEMPLATE -->
+                    </select>
+                  </div>
+                </td>
+              </tr>
+              <tr> 
+                <td class="font-default-14px" colspan="2">&nbsp;</td>
+              </tr>
+              <tr> 
+                <td class="font-default-14px" width="25%" height="17"> 
+                  <div align="left">ตำบล</div>
+                </td>
+                <td class="font-default-14px" height="17" width="75%"> 
+                  <div align="right"> 
+                    <input type="text" name="tumbol" size="17" value="">
+                  </div>
+                </td>
+              </tr>
+              <tr> 
+                <td class="font-default-14px" width="25%" height="17"> 
+                  <div align="left">อำเภอ</div>
+                </td>
+                <td class="font-default-14px" height="17" width="75%"> 
+                  <div align="right"> 
+                    <select name="ampur">
+                      <option value="" selected >-- เลือก ทุกอำเภอ --</option>
+                      <!-- BEGIN SELECT_AMPHUR_TEMPLATE -->
+
+		<option value="คลองเตย" >คลองเตย</option> 
+
+		<option value="คลองสาน" >คลองสาน</option> 
+
+		<option value="คลองสามวา" >คลองสามวา</option> 
+
+		<option value="คันนายาว" >คันนายาว</option> 
+
+		<option value="คันนายาว (บางกะปิ)" >คันนายาว (บางกะปิ)</option> 
+
+		<option value="จตุจักร" >จตุจักร</option> 
+
+		<option value="จอมทอง" >จอมทอง</option> 
+
+		<option value="ดอนเมือง" >ดอนเมือง</option> 
+
+		<option value="ดินแดง" >ดินแดง</option> 
+
+		<option value="ดุสิต" >ดุสิต</option> 
+
+		<option value="ตลิ่งชัน" >ตลิ่งชัน</option> 
+
+		<option value="ทวีวัฒนา" >ทวีวัฒนา</option> 
+
+		<option value="ทุ่งครุ" >ทุ่งครุ</option> 
+
+		<option value="ธนบุรี" >ธนบุรี</option> 
+
+		<option value="บางกอกน้อย" >บางกอกน้อย</option> 
+
+		<option value="บางกอกใหญ่" >บางกอกใหญ่</option> 
+
+		<option value="บางกะปิ" >บางกะปิ</option> 
+
+		<option value="บางขุนเทียน" >บางขุนเทียน</option> 
+
+		<option value="บางเขน" >บางเขน</option> 
+
+		<option value="บางคอแหลม" >บางคอแหลม</option> 
+
+		<option value="บางแค" >บางแค</option> 
+
+		<option value="บางซื่อ" >บางซื่อ</option> 
+
+		<option value="บางนา" >บางนา</option> 
+
+		<option value="บางบอน" >บางบอน</option> 
+
+		<option value="บางพลัด" >บางพลัด</option> 
+
+		<option value="บางรัก" >บางรัก</option> 
+
+		<option value="บึงกุ่ม" >บึงกุ่ม</option> 
+
+		<option value="บึงกุ่ม(บางกะปิ)" >บึงกุ่ม(บางกะปิ)</option> 
+
+		<option value="ปทุมวัน" >ปทุมวัน</option> 
+
+		<option value="ประเวศ" >ประเวศ</option> 
+
+		<option value="ป้อมปราบศัตรูพ่าย" >ป้อมปราบศัตรูพ่าย</option> 
+
+		<option value="พญาไท" >พญาไท</option> 
+
+		<option value="พระโขนง" >พระโขนง</option> 
+
+		<option value="พระนคร" >พระนคร</option> 
+
+		<option value="ภาษีเจริญ" >ภาษีเจริญ</option> 
+
+		<option value="มีนบุรี" selected>มีนบุรี</option> 
+
+		<option value="มีนบุรี(เมือง)" >มีนบุรี(เมือง)</option> 
+
+		<option value="มีนบุรี(แสนแสบ)" >มีนบุรี(แสนแสบ)</option> 
+
+		<option value="ยานนาวา" >ยานนาวา</option> 
+
+		<option value="ราชเทวี" >ราชเทวี</option> 
+
+		<option value="ราษฎร์บูรณะ" >ราษฎร์บูรณะ</option> 
+
+		<option value="ลาดกระบัง" >ลาดกระบัง</option> 
+
+		<option value="ลาดกระบัง(แสนแสบ)" >ลาดกระบัง(แสนแสบ)</option> 
+
+		<option value="ลาดพร้าว" >ลาดพร้าว</option> 
+
+		<option value="วังทองหลาง" >วังทองหลาง</option> 
+
+		<option value="วัฒนา" >วัฒนา</option> 
+
+		<option value="สวนหลวง" >สวนหลวง</option> 
+
+		<option value="สะพานสูง" >สะพานสูง</option> 
+
+		<option value="สัมพันธวงศ์" >สัมพันธวงศ์</option> 
+
+		<option value="สาทร" >สาทร</option> 
+
+		<option value="สาธร" >สาธร</option> 
+
+		<option value="สายไหม" >สายไหม</option> 
+
+		<option value="หนองแขม" >หนองแขม</option> 
+
+		<option value="หนองแขม (ภาษีเจริญ)" >หนองแขม (ภาษีเจริญ)</option> 
+
+		<option value="หนองแขม(ภาษีเจริญ)" >หนองแขม(ภาษีเจริญ)</option> 
+
+		<option value="หนองจอก" >หนองจอก</option> 
+
+		<option value="หนองจอก(แสนแสบ)" >หนองจอก(แสนแสบ)</option> 
+
+		<option value="หลักสี่" >หลักสี่</option> 
+
+		<option value="ห้วยขวาง" >ห้วยขวาง</option> 
+
+		<option value="อุทัย(อุทัยใหญ่)" >อุทัย(อุทัยใหญ่)</option> 
+
+                      <!-- END SELECT_AMPHUR_TEMPLATE -->
+                    </select>
+                  </div>
+                </td>
+              </tr>
+              <tr> 
+                <td class="font-default-14px" width="25%" height="25"> 
+                  <div align="left">จังหวัด</div>
+                </td>
+                <td class="font-default-14px" height="25" width="75%"> 
+                  <p><font color="#0000FF">&nbsp;&nbsp;กรุงเทพ</font></p>
+                </td>
+              </tr>
+            </table>
+            <!-- BEGIN TABLE_SUB_PROVINCE_TEMPLATE -->
+            <table width="100%" border="0" cellspacing="0" cellpadding="0">
+              <tr> 
+                <td class="font-default-14px"> 
+                      <!-- BEGIN SELECT_SUB_PROVINCE_TEMPLATE -->
+					  <div align='right'>สาขา &nbsp; <select name='sub_province' size='1'><option value='' selected>--- เลือก ทุกสาขา ---</option><option value='กรุงเทพมหานคร ส่วนกลาง' >>  มหานคร ส่วนกลาง</option><option value='แพ่งกรุงเทพมหานคร 1' >>  แพ่งมหานคร 1</option><option value='แพ่งกรุงเทพมหานคร 2' >>  แพ่งมหานคร 2</option><option value='แพ่งกรุงเทพมหานคร 3' >>  แพ่งมหานคร 3</option><option value='แพ่งกรุงเทพมหานคร 4' >>  แพ่งมหานคร 4</option><option value='แพ่งกรุงเทพมหานคร 5' >>  แพ่งมหานคร 5</option><option value='แพ่งกรุงเทพมหานคร 6' >>  แพ่งมหานคร 6</option></select></div>
+                      <!-- END SELECT_SUB_PROVINCE_TEMPLATE -->
+                </td>
+              </tr>
+            </table>
+            <!-- END TABLE_SUB_PROVINCE_TEMPLATE -->
+            <br>
+            <table width="100%" border="0" cellspacing="0" cellpadding="0">
+              <tr> 
+                <td colspan="2" class="font-default-14px">ราคาประเมิน เจ้าพนักงาน</td>
+              </tr>
+              <tr> 
+                <td width="47%" class="font-default-14px">วงเงิน ต่ำสุด</td>
+                <td width="53%" class="font-default-14px"> 
+                  <input type="text" name="price_begin" size="11" value="">
+                </td>
+              </tr>
+              <tr> 
+                <td width="47%" class="font-default-14px">วงเงิน สูงสุด</td>
+                <td width="53%" class="font-default-14px"> 
+                  <input type="text" name="price_end" size="11" value="1500000">
+                </td>
+              </tr>
+            </table>
+            <table width="100%" border="0" cellspacing="0" cellpadding="0">
+              <tr>
+                <td class="font-default-14px" width="37%">&nbsp;</td>
+                <td class="font-default-14px" width="63%">&nbsp;</td>
+              </tr>
+              <tr> 
+                <td class="font-default-14px" width="37%">วันประมูล</td>
+                <td class="font-default-14px" width="63%"> 
+				<script type="text/javascript" src="js/calendar/CalendarControl.js"></script>
+				<input type="text" name="bid_date" size="10" maxlength="10" value="" onfocus="showCalendarControl(this);">
+<!--
+                  <select name="bid_date" size="1" >
+                    <option value="" selected>-- เลือก ทุกวัน --</option>
+-->
+                    <!-- BEGIN SELECT_DATE_TEMPLATE -->
+					
+                    <!-- END SELECT_DATE_TEMPLATE -->
+<!--
+                  </select>
+-->
+                </td>
+              </tr>
+            </table>
+
+            <table width="100%" border="0" cellspacing="0" cellpadding="0">
+              <tr>
+                <td class="font-default-14px" width="37%">&nbsp;</td>
+                <td class="font-default-14px" width="63%">&nbsp;</td>
+              </tr>
+              <tr>
+                <td class="font-default-14px" width="37%">รหัสยืนยัน</td>
+                <td class="font-default-14px" width="63%" style="border: #000000 1px solid; padding:5px">
+				<div style="font-family: tahoma; font-size: 8pt; color: #FF0000;"><b>812551</b><div> &nbsp;&nbsp;<input type="text" name="seckey" size="6" maxlength="6"><br><br><div style="font-family: tahoma; font-size: 8pt;">โปรดกรอกให้ตรง<br>ตัวเลขด้านบน</div>
+                </td>
+              </tr>
+            </table>
+
+            <br>
+            <table width="100%" border="0">
+              <tr> 
+                <td width="22%" class="font-default-14px"> 
+                  <div align="right"> </div>
+                </td>
+                <td width="78%" class="font-default-14px"> 
+                  <div align="right"> 
+                    <input type="button" name="Button222" value="ค้นหา" onClick="Search();">
+                    <input type="button" name="Button1" value="ยกเลิก"  onClick=" document.location='asset_search_province.asp' ; return false;" >
+                  </div>
+                </td>
+              </tr>
+            </table></form>
+          </td>
+          <td background="img/search_frame_05.gif" width="6%">&nbsp;</td>
+        </tr>
+        <tr> 
+          <td width="7%"><img src="img/search_frame_06.gif" width="14" height="15"></td>
+          <td background="img/search_frame_07.gif" width="87%"></td>
+          <td width="6%"><img src="img/search_frame_08.gif" width="12" height="15"></td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+</table>
+</body>
+</html>

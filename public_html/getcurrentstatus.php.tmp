@@ -1,0 +1,146 @@
+<?php
+include("db.php");
+include("simple_html_dom.php");
+include("sharelib.php");
+include("assettype.php"); //array $assetType
+include("province.php"); //array $province
+include("amphur.php"); //array $amphur
+
+function getCurrentAmphurHtml($amphurTh,$type)
+{
+	$amphurTh = iconv("UTF-8", "windows-874", $amphurTh);
+	$amphurTh = urlencode($amphurTh);
+	$url = 'http://asset.led.go.th/newbid/asset_search_province.asp?search_asset_type_id='.$type.'&search_tumbol=&search_ampur='.$amphurTh.'&search_province=&search_sub_province=&search_price_begin=&search_price_end=&search_bid_date=';
+	//echo $url."<br/>\n";
+	doLog('Fect url in getCurrentAmphurHtml function ======'.$url);
+	$html_content = file_get_contents_curl($url);
+	if(strlen($html_content) > 0){
+		doLog('strlen($html_content) ======'.strlen($html_content));
+		return $html_content;
+	}else{
+		doLog('strlen($html_content) false ======');
+		return false;
+	}
+}
+
+function getAmphurLink($objHtml,$amphurTh)
+{	
+	$NumResult = domGetNumResult($objHtml);
+	doLog('$NumResult in fx() getAmphurLink======'.$NumResult);
+	if($NumResult > 0){	
+		$tmpHTML = $objHtml->find('tr[onclick]');
+		//$amphurTxt = objHtml->find('/html/body/table[3]/tbody/tr/td[1]/table[1]/tbody/tr[2]/td/table/tbody/tr[3]/td[9]/font')->plaintext;
+		//$amphurTxt = stripInvisible($amphurTxt);
+		foreach($tmpHTML as $tr) 
+		{
+			$quote = 'single';
+			$betweenWord = between($tr->outertext,"window.open('","')");
+			if($betweenWord == ''){
+				$betweenWordTMP = between($tr->outertext,'window.open("','")');
+				$quote = 'double';
+			}
+			if($quote == 'single'){
+				$urlParam = between($betweenWord,'asset_open.asp?',"',");
+			}else{
+				$urlParam = between($betweenWord,'asset_open.asp?','",');
+			}
+			
+			$urlParam = explode('&',$urlParam);
+			$paramAll = '';
+			foreach($urlParam as $assetParam)
+			{
+				$tmpKey = explode('=',$assetParam);
+				if(sizeof($tmpKey) == 2)
+				{
+					$param = '&'.trim($tmpKey[0]).'='.rawurlencode(trim($tmpKey[1]));
+					$paramAll .= $param;
+				}else{
+					die($assetParam);
+				}	
+			}
+			$paramAll 	= substr($paramAll, 1);
+			$row 		= $tr->find('td');
+			$amphurTxt 	= $row[8]->plaintext;
+			$amphurTxt 	= stripInvisible($amphurTxt);
+			doLog('$amphurTxt ======'.$amphurTxt);
+			if($amphurTxt == $amphurTh){
+				$link = 'http://asset.led.go.th/newbid/asset_open.asp?'.$paramAll;
+				break;
+			}		
+		}
+	}else{
+		$link = false;
+	}
+	return $link;
+}
+
+function getProvinceThFromLink($url)
+{	
+	//$tmpHtml = new simple_html_dom();
+	$tmpHtml = file_get_html($url);
+	doLog('$url: '.$url);
+	//$tmpHtml->load($html_content);
+	//doLog('$html_content lenght(in fx): '.strlen($html_content));
+	$ProvinceTh = $tmpHtml->find('/html/body/table/tbody/tr[3]/td/div/table/tbody/tr/td[2]/table/tbody/tr[7]/td/font')->plaintext;
+	$ProvinceTh = stripInvisible($ProvinceTh);
+	return $ProvinceTh;
+}
+
+
+//$html = new simple_html_dom();
+foreach($assetType as $assetTypeNum => $assetTypeTh){
+	$conn = db();
+	doLog('Phase ======'.$assetTypeNum."->".$assetTypeTh);
+	foreach($amphur as $amphurNum => $amphurTh){
+		doLog('Phase ======'.$amphurNum."->".$amphurTh);
+		if ($result = $conn->query('select * from amphur where en="'.$amphurNum.'"')){
+			if($result->num_rows == 0){
+				$html_content = getCurrentAmphurHtml($amphurTh,$assetTypeNum);
+				doLog('$html_content lenght(main): '.strlen($html_content));
+				//doLog('$html_content (main): '.$html_content);
+				if($html_content !== false){
+					$html = str_get_html($html_content);
+					$confidentLink = getAmphurLink($html,$amphurTh); //Link URL to asset					
+					$ProvinceTh = getProvinceThFromLink($confidentLink);
+					doLog('$ProvinceTh: '.$ProvinceTh);
+					$ProvinceEn = array_search($ProvinceTh, $province);
+					$NumResult 	= domGetNumResult($html);
+					$PageResult	= domGetPageResult($html);
+				}
+				if ($result = $conn->query('select * from province where en="'.$ProvinceEn.'"')){
+					if($result->num_rows == 0){
+						$q = "INSERT INTO province (en, th, encode) VALUES ('".$ProvinceEn."', '".$ProvinceTh."', '".urlencode($ProvinceTh)."')";
+						$conn->query($q);
+						doLog('query insert province: '.$q);
+					}
+				}
+				if ($result = $conn->query('select * from province where en="'.$ProvinceEn.'"')){
+					if($result->num_rows == 1){
+						$row = $result->fetch_object();
+						$provinceId = $row->id;
+					}
+				}				
+				$q = "INSERT INTO amphur (en,th,encode,page,result,updated,province_id) VALUES ('".$amphurNum."', '".$amphurTh."', '".urlencode($amphurTh)."',".$PageResult.', '.$NumResult.','.time().','.$provinceId.")";
+				$conn->query($q);		
+				doLog('query insert amphur: '.$q);
+				$dir = 'asset/'.$ProvinceEn.'/'.$assetTypeNum.'/'.$amphurNum;
+				if (!file_exists($dir) && !is_dir($dir)) {
+					$result_dir = mkdir($dir);
+					if($result_dir){
+						doLog('create '.$dir." done!");			
+					}else{
+						doLog('create '.$dir." fail!");				
+					}		
+				}
+				if($result_dir){
+					doLog($amphurTh.'<=>'.$ProvinceTh." done!");						
+				}else{
+					doLog('create '.$amphurTh.' with '.$ProvinceTh." fail!");	
+				}
+			}else{
+				 htmlRefresh();		 
+			}
+		}
+	}
+}
+htmlRefresh();

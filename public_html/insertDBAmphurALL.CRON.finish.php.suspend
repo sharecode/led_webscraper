@@ -1,0 +1,131 @@
+<?php
+include("sharelib.php");
+
+$conn = db();
+$province_th = '';
+$q = 'select province_id  FROM `amphur` ORDER BY id DESC LIMIT 1';
+$result = $conn->query($q);
+if($result === false OR $conn->affected_rows == 0){
+	//error
+	notifyError('error in'.$q);
+}else{
+	$row = $result->fetch_object();
+	$province_id  = $row->province_id;
+}
+
+
+$q = 'select *  FROM `province` where id > '.$province_id.' ORDER BY id ASC LIMIT 1';
+$result = $conn->query($q);
+
+$row = $result->fetch_object();
+$province_id = $row->id;
+$province_encode = $row->encode;
+$province_th = $row->th;
+$province_en = $row->en;
+
+$url = "http://1038529402.rsc.cdn77.org/newbid/asset_search_province.asp?search_province=".$province_encode;
+
+
+$html = file_get_contents($url);
+//$html = iconv('windows-874', 'utf-8', $html);
+
+$find = BetweenWord($html,'<!-- BEGIN SELECT_AMPHUR_TEMPLATE -->','<!-- END SELECT_AMPHUR_TEMPLATE -->',0,0,'R','L');
+
+
+$notify1 = '';
+$notify2 = '';
+if(!empty($find)){
+	$value = substr_count($find, 'value');
+	$value  = $value *2;
+	for($i = 0;$i < $value;){
+		$j = $i + 1;
+		$c = BetweenWord($find,'"', '"', $i, $j, 'R', 'L');
+		$amphur_th = iconv('windows-874', 'utf-8', $c);
+		//$c = iconv('utf-8','windows-874',$c);
+		//$d = $row->th;
+		$c = urlencode($c);
+		$c = str_replace('%29', ')', $c);
+		$c = str_replace('%28', '(', $c);
+		$c = str_replace('%2B', '%20', $c);
+		$c = str_replace('%25', '%', $c);
+		$r[] = array('en'=>'temp','encode'=>$c, 'th'=>$amphur_th,'province_id'=>$province_id);
+		$i = $i+2;
+	}
+
+	$count = 0;	
+	foreach($r as $rows){
+		
+		$q = 'select id from amphur where encode ="'.$rows['encode'].'"';
+		$result = $conn->query($q);
+		$num = $conn->affected_rows;
+		if($num == 0){
+			
+			//find eng aumphur name from newamphur
+			$simpleAmphur = $rows['th'];
+			$simpleAmphur = str_replace(" ","",$simpleAmphur);
+			
+			$amphurMain = strstr($simpleAmphur, '(', true);
+			if($amphurMain !== false){
+				$cAmphur[0] = $amphurMain; //prepare keyword for search en		
+				$amphurSub = strstr($simpleAmphur, '(');
+				if($amphurSub !== false){
+					$amphurSub = str_replace("(","",$amphurSub);
+					$amphurSub = str_replace(")","",$amphurSub);
+					$cAmphur[1] = $amphurSub;
+				}
+			}
+			
+			$updatea_en = 'temp'.rand(100,1000);
+			if(isset($cAmphur)){
+				foreach($cAmphur as $aSearchTH){
+					$aSearchTH = str_replace("(","",$aSearchTH);
+					$aSearchTH = str_replace("กิ่งอ.","",$aSearchTH);
+					$aSearchTH = str_replace("อำเภอ","",$aSearchTH);
+					$aSearchTH = str_replace("ตำบล","",$aSearchTH);
+					$aSearchTH = str_replace("เมือง","",$aSearchTH);
+					$aSearchTH = str_replace("จังหวัด","",$aSearchTH);
+					$q = 'SELECT
+					`newamphur`.en as newen
+					FROM  `newamphur`
+					WHERE `newamphur`.`th` = "'.$aSearchTH.'"';
+					$result = $conn->query($q);
+					if($result !== false){
+						$updateEN = $result->fetch_object();						
+						$arrUpdatea_en[] = $updateEN->newen;
+					}
+				}				
+				if(sizeof($arrUpdatea_en) > 0){					
+					$updatea_en = implode($arrUpdatea_en);
+					unset($arrUpdatea_en);
+				}
+				if($updatea_en == ''){
+					$updatea_en = 'temp'.rand(100,1000);
+				}
+			}		
+
+			//insert amphur
+			$t = 'INSERT INTO amphur (province_id , en, th, encode) 
+			VALUES ('.$rows['province_id'].',"'.$updatea_en.'","'.$rows['th'].'","'.$rows['encode'].'")';
+			$conn->query($t);
+			$amphur_id = $conn->insert_id;
+			
+			//insert page
+			$v = 'INSERT INTO page (type_id, amphur_id, province_id) 
+			VALUES (1,'.$amphur_id.','.$rows['province_id'].'),(2,'.$amphur_id.','.$rows['province_id'].')';
+			$conn->query($v);
+			$page_id = $conn->insert_id;
+			
+			$count++;
+			$notify1 .= ($count.'.Add '.$province_th.'>'.$rows['th'].'>'.$rows['th']."(amphur_id=".$amphur_id.",Engname=".$updatea_en.") into table amphur success\r\n");
+			$notify2 .= ($count.'.Add '.$province_th.'>'.$rows['th'].'>'.$page_id." into table page success\r\n");
+		}
+		//if duplicate ignor them -> skip
+	}
+}
+
+if($notify1 == '' AND $notify2 == ''){
+	notifyError('error extrace amphur from url :'.$url);
+}else{
+	$notify = $notify1."\r\n".$notify2;
+	notifyError($notify, 'success add '.$count++.' amphur into database');
+}

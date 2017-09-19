@@ -1,0 +1,45 @@
+<?php
+include("sharelib.php");
+
+$conn = db();
+$q = 'select 
+amphur.id  as aid,
+amphur.th  as ath,
+amphur.en  as aen,
+amphur.encode  as aencode,
+province.id  as pid,
+province.th  as pth,
+province.en  as pen,
+province.encode  as pencode,
+type.th  as tth,
+type.en  as ten,
+type.encode  as tencode
+from amphur
+LEFT JOIN province on province.id = amphur.province_id
+JOIN type';
+$result = $conn->query($q);
+while($row = $result->fetch_object()){
+	$categories[] = $row;
+}
+
+$i = 0;
+foreach($categories as $category){	
+	//$folder =  "asset/".$category->pen."/".$category->aen."/".$category->ten.', 0755';
+	//echo $folder."\r\n";
+	$path = "asset/".$category->pen."/".$category->aen."/".$category->ten;
+	if (!file_exists($path)) {
+		makeFolder($path, 0755);
+		$i++;
+		$filelist[] = $path;
+	}
+}
+
+if($i > 0 ){
+	$filst = "\r\n";
+	foreach($filelist as $f){
+		$filst .= $f."\r\n";
+	}
+	notifyError("สร้าง โฟลเดอร์ใหม่ทั้งหมด".$i."โฟลเดอร์ ดังรายการต่อไปนี้".$filst,"Create folder report");
+}else{
+	notifyError("ไม่มีดารสร้าง โฟลเดอร์ใหม่แล้ว เข้ามา หยุด cron ของ creat-folder ด้วยจ้า","Create folder report");
+}

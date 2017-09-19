@@ -1,0 +1,160 @@
+<?php
+include("db.php");
+include("simple_html_dom.php");
+include("sharelib.php");
+include("assettype.php"); //array $assetType
+include("province.php"); //array $province
+include("amphur.php"); //array $amphur
+
+function insertAmphur($arrAmphur, $translateAmphur)
+{
+	$conn = db();
+	foreach($arrAmphur as $amphurTh){
+		$amphurEncode = ledencode($amphurTh);		
+		if ($result = $conn->query('select * from amphur where th="'.$amphurTh.'"')){
+			if($result->num_rows == 0){
+				if(isset($translateAmphur[$amphurTh])){
+					$amphurEn = $translateAmphur[$amphurTh];
+				}else{
+					$amphurEn = '000000';
+				}
+				$q = "INSERT INTO amphur (province_id,en, th, encode) VALUES (1,'".$amphurEn."', '".$amphurTh."', '".$amphurEncode."')";
+				$conn->query($q);
+				doLog('query insert province: '.$q);
+			}
+		}
+	}
+}
+
+function showAmphur()
+{
+	$conn = db();		
+	if ($result = $conn->query('select * from amphur')){
+		while($row = $result->fetch_object()){
+			$a[] = array("id"=>$row->id, "en"=>$row->en, "th"=>$row->th, "encode"=>leddecode($row->encode));
+		}
+	}
+	return $a;
+}
+$translateAmphur = array(
+"พระนคร"=>"Phra-Nakhon",
+"ดุสิต"=>"Dusit",
+"หนองจอก"=>"Nong-Chok",
+"บางรัก"=>"Bang-Rak",
+"บางเขน"=>"Bang-Khen",
+"บางกะปิ"=>"Bang-Kapi",
+"ปทุมวัน"=>"Pathum-Wan",
+"ป้อมปราบศัตรูพ่าย"=>"Pom-Prap-Sattru-Phai",
+"พระโขนง"=>"Phra-Khanong",
+"มีนบุรี"=>"Min-Buri",
+"ลาดกระบัง"=>"Lat-Krabang",
+"ยานนาวา"=>"Yan-Nawa",
+"สัมพันธวงศ์"=>"Samphanthawong",
+"พญาไท"=>"Phaya-Thai",
+"ธนบุรี"=>"Thon-Buri",
+"บางกอกใหญ่"=>"Bangkok-Yai",
+"ห้วยขวาง"=>"Huai-Khwang",
+"คลองสาน"=>"Khlong-San",
+"ตลิ่งชัน"=>"Taling-Chan",
+"บางกอกน้อย"=>"Bangkok-Noi",
+"บางขุนเทียน"=>"Bang-Khun-Thian",
+"ภาษีเจริญ"=>"Phasi-Charoen",
+"หนองแขม"=>"Nong-Khaem",
+"ราษฎร์บูรณะ"=>"Rat-Burana",
+"บางพลัด"=>"Bang-Phlat",
+"ดินแดง"=>"Din-Daeng",
+"บึงกุ่ม"=>"Bueng-Kum",
+"สาทร"=>"Sathon",
+"บางซื่อ"=>"Bang-Sue",
+"จตุจักร"=>"Chatuchak",
+"บางคอแหลม"=>"Bang-Kho-Laem",
+"ประเวศ"=>"Prawet-",
+"คลองเตย"=>"Khlong-Toei",
+"สวนหลวง"=>"Suan-Luang",
+"จอมทอง"=>"Chom-Thong",
+"ดอนเมือง"=>"Don-Mueang",
+"ราชเทวี"=>"Ratchathewi",
+"ลาดพร้าว"=>"Lat-Phrao",
+"วัฒนา"=>"Watthana",
+"บางแค"=>"Bang-Khae",
+"หลักสี่"=>"Lak-Si",
+"สายไหม"=>"Sai-Mai",
+"คันนายาว"=>"Khan-Na-Yao",
+"สะพานสูง"=>"Saphan-Sung",
+"วังทองหลาง"=>"Wang-Thonglang",
+"คลองสามวา"=>"Khlong-Sam-Wa",
+"บางนา"=>"Bang-Na",
+"ทวีวัฒนา"=>"Thawi-Watthana",
+"ทุ่งครุ"=>"Thung-Khru",
+"บางบอน"=>"Bang-Bon"
+);
+$aumpherBkk = array(
+	"คลองเตย",
+	"คลองสาน",
+	"คลองสามวา",
+	"คันนายาว",
+	"จตุจักร",
+	"จอมทอง",
+	"เจียระดับ",
+	"ดอนเมือง",
+	"ดินแดง",
+	"ดุสิต",
+	"ตลิ่งชัน",
+	"ทวีวัฒนา",
+	"ทุ่งครุ",
+	"ธนบุรี",
+	"บางกอกน้อย",
+	"บางกอกใหญ่",
+	"บางกะปิ",
+	"บางขุนเทียน",
+	"บางเขน",
+	"บางคอแหลม",
+	"บางแค",
+	"บางซื่อ",
+	"บางนา",
+	"บางบอน",
+	"บางพลัด",
+	"บางรัก",
+	"บึงกุ่ม",
+	"ปทุมวัน",
+	"ประแจจีน",
+	"ประเวศ",
+	"ป้อมปราบศัตรูพ่าย",
+	"พญาไท",
+	"พระโขนง",
+	"พระนคร",
+	"ภาษีเจริญ",
+	"มีนบุรี",
+	"มีนบุรี (เมือง)",
+	"มีนบุรี(คลองสอง)",
+	"มีนบุรี(เมือง)",
+	"มีนบุรี(แสนแสบ)",
+	"ยานนาวา",
+	"ราชเทวี",
+	"ราษฎร์บูรณะ",
+	"ลาดกระบัง",
+	"ลาดกระบัง(แสนแสบ)",
+	"ลาดพร้าว",
+	"ลาดพร้าว(บางกะปิ)",
+	"วังทองหลาง",
+	"วัฒนา",
+	"สวนหลวง",
+	"สะพานสูง",
+	"สัมพันธวงศ์",
+	"สาทร",
+	"สาธร",
+	"สายไหม",
+	"แสนแสบ",
+	"หนองแขม",
+	"หนองแขม (ภาษีเจริญ)",
+	"หนองจอก",
+	"หนองจอก(เจียระดับ)",
+	"หลักสี่",
+	"ห้วยขวาง"
+	);
+//$amphurTh = array_values($amphur);
+//insertAmphur($aumpherBkk ,$translateAmphur);
+$result = showAmphur();
+echo "<pre>";
+print_r($result);
+echo "</pre>";

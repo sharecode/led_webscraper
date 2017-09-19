@@ -1,0 +1,69 @@
+<?php
+date_default_timezone_set("Asia/Bangkok");
+$timer_start = microtime(true);
+include("sharelib.php");
+
+//get asset db
+$q = 'select id,estimated_price,size400w,size100w,sizew from asset where enable = 1';
+$conn = db();
+$connMap = dbMap();
+$result = $conn->query($q);	
+$countupdate = 0;
+while($row = $result->fetch_object()){
+    //listing size number
+    $listAreanum = showWnumberReport($row->size400w, $row->size100w, $row->sizew, false);
+    if($listAreanum >0){
+        $listAverageprice_num = $row->estimated_price/$listAreanum;
+    }else{
+        $listAverageprice_num = 0;
+    }
+    //arear filter		
+    $listAreaSizeFilter = 1;
+    switch ($listAreanum){
+        case $listAreanum > 8000:
+            $listAreaSizeFilter = 6; //20rai
+        break;
+        case $listAreanum > 4000:
+            $listAreaSizeFilter = 5;//10rai
+        break;
+        case $listAreanum > 800:
+            $listAreaSizeFilter = 4;//2rai
+        break;
+        case $listAreanum > 150:
+            $listAreaSizeFilter = 3;//150w
+        break;
+        case $listAreanum > 50:
+            $listAreaSizeFilter = 2;//50w
+        break;
+        default:
+            $listAreaSizeFilter = 1;
+        break;
+    }
+
+    $listAreaCostFilter = 1;
+    switch ($listAverageprice_num){
+        case $listAverageprice_num > 90000:
+            $listAreaCostFilter = 6; //90,000b/w++
+        break;
+        case $listAverageprice_num > 36000:
+            $listAreaCostFilter = 5;//36,000-90,000b/w
+        break;
+        case $listAverageprice_num > 7200:
+            $listAreaCostFilter = 4;//7,200-36,000b/w
+        break;
+        case $listAverageprice_num > 1200:
+            $listAreaCostFilter = 3;//1,200-7,200b/w
+        break;
+        case $listAverageprice_num > 200:
+            $listAreaCostFilter = 2;//200-1,200b/w
+        break;
+        default:
+            $listAreaCostFilter = 1; //น้อยกว่า 200b/w
+        break;
+    }    
+    $q = 'update listing set bedrooms = '.$listAreaSizeFilter.', bathrooms = '.$listAreaCostFilter.' where id ='.$row->id;
+    //echo $q.'<br/>';
+    $connMap->query($q);
+    $countupdate++;
+}
+echo 'finnish update '.$countupdate.'map';

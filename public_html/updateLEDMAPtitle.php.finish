@@ -1,0 +1,14 @@
+<?php
+date_default_timezone_set("Asia/Bangkok");
+include("sharelib.php");
+
+//get asset db
+$q = 'select id from asset where enable = 1 ORDER BY  `asset`.`id` ASC LIMIT 1000';
+$conn = db();
+$result = $conn->query($q);
+while($row = $result->fetch_object()){ 
+   $arrMapId[] = $row->id;
+}
+//echo count($arrMapId).'<br/>';
+//print_r($arrMapId);
+updateMap($arrMapId);

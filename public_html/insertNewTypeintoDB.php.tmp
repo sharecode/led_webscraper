@@ -1,0 +1,15 @@
+<?php
+date_default_timezone_set("Asia/Bangkok");
+include("sharelib.php");
+
+$conn = db();
+$q = 'SELECT id as aid,province_id as pid FROM `amphur`';
+$result = $conn->query($q);
+while($page = $result->fetch_object()){
+	$statment[] = '(3, '.$page->aid.', '.$page->pid.',0,0,0,"2017-01-01 00:00:00","2017-01-01 00:00:00")';
+}
+
+$statments = implode(',', $statment);
+$q = 'INSERT INTO `page` (type_id, amphur_id, province_id, asset, page, changed, last_update, next_update) VALUES '.$statments.';';
+//echo $q;
+$conn->query($q);

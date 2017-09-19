@@ -1,0 +1,102 @@
+<?php
+//Script calculate timer
+$timer_start = microtime(true);
+//what this script for ??
+//1.update only changed
+//  the change is algorithm from getPagelink.CRON.php
+//  they know this page should fect again
+//2.get URL link asset from one ampher per run
+//3.get URL link asset from one page per run
+//
+//result 
+//1. store link -> page
+//2. reduct amont of page in page_q
+//3. the page that already fect was set change = 0
+include("simple_html_dom.php");
+include("sharelib.php");
+include("db.php");
+
+function checkPageQ()
+{
+	$conn = db();
+	$q = 'SELECT 
+		page.id,
+		page.asset as asset_amount,
+		page.page as amount,
+		page.next_update,
+		page.changed,
+		type.id as tid,
+		type.en as ten,
+		type.th as tth,
+		type.encode as tencode,
+		amphur.id as aid,
+		amphur.en as aen,
+		amphur.th as ath,
+		amphur.encode as aencode,
+		province.id as pid,
+		province.en as pen,
+		province.th as pth,
+		province.encode as pencode
+		FROM page
+		LEFT JOIN type ON page.type_id = type.id
+		LEFT JOIN province ON page.province_id = province.id
+		LEFT JOIN amphur ON page.amphur_id = amphur.id AND province.id = amphur.province_id
+		WHERE page.changed > 0 AND page.asset > 0';
+	$result = $conn->query($q);
+	if ($conn->affected_rows > 0){
+		$notify = "Add page queue success:\r\n";
+		$no = 1;
+		while($row = $result->fetch_object()){
+			$AllPage[] = $row;			
+			$url = 'http://asset.led.go.th/newbid/asset_search_province.asp?search_asset_type_id='.$row->tencode.'&search_tumbol=&search_ampur='.$row->aencode.'&search_province='.$row->pencode.'&search_sub_province=&search_price_begin=&search_price_end=&search_bid_date=';
+			$notify .= $no.'. '.$row->pth.">".$row->ath.">".$row->tth."\r\n".$url."\r\n\r\n";
+			$no++;
+		}
+		if(updateDBPageQ($AllPage)){
+			notifyUpdate($notify);
+		}else{
+			$notify .= 'but some query has fail.....';
+			notifyError($notify);
+		}
+		return true;
+	}else{
+		return false;
+	}	
+}
+
+function updateDBPageQ($pages){
+	$conn = db();
+	foreach($pages as $page){
+		$q = 'INSERT INTO page_q (page_id, page, last_update)
+			  VALUES ('.$page->id.', '.$page->amount.', "'.date("Y-m-d H:i:s").'")
+		ON DUPLICATE KEY UPDATE
+			page = '.$page->amount.',
+			last_update = "'.date("Y-m-d H:i:s").'"';
+		$result = $conn->query($q);
+		if ($conn->affected_rows == 0){
+			notifyError('fails query in getPageQ.CRON:'.$q);
+		}else{
+			if($page->changed > 0){
+				$currentChanged = $page->changed;
+				$currentChanged--;
+			}
+			$q = 'UPDATE page 
+			SET changed = '.$currentChanged .'
+			WHERE id = '.$page->id;
+			$result = $conn->query($q);
+			if ($conn->affected_rows == 0){
+				notifyError('fails query in getPageQ.CRON:'.$q);
+			}
+		}
+	}
+	return true;
+}
+
+$result = checkPageQ();
+if($result === false){
+	$timer_end = microtime(true);
+	$execution_time = $timer_end - $timer_start;
+	$notifyMail  = "ตอนนี้การ  เพิ่มคิวงาน ได้อัพเดต จนไม่เเหลือ อยู่แล้ว ควรลด ปริมาณการอัพเดต  ".__FILE__." ลง อีกนิดนึง\r\n";
+	$notifyMail .= "เวลาที่ใช้ไป  คือ ".$execution_time.'วินาที'; 
+	notifyError($notifyMail);
+}

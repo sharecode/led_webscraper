@@ -1,0 +1,13 @@
+<?php
+include("sharelib.php");
+
+$conn = db();
+$q = 'select id,th  FROM `province` where id > 10';
+$result = $conn->query($q);
+
+while($row = $result->fetch_object()){
+	$c = iconv('utf-8','windows-874',$row->th);
+	$d = $row->th;
+	$r = "UPDATE `province` SET `encode`= \"".urlencode($c)."\" WHERE id = ".$row->id;
+	$conn->query($r);
+}

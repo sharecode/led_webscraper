@@ -1,0 +1,36 @@
+<?php
+date_default_timezone_set("Asia/Bangkok");
+$timer_start = microtime(true);
+include("sharelib.php");
+
+//get asset db
+$q = 'select id,url from asset where enable = 1 limit 50';
+$conn = db();
+$connMap = dbMap();
+$result = $conn->query($q);
+$countUpdate = 0;
+$countError = 0;
+$error = '';
+while($row = $result->fetch_object()){ 
+    $newId = genAssetID($row->url);
+    if($newId > 0 && $newId <> $row->id){
+        $q = 'update asset set id = '.$newId.' where id ='.$row->id;
+        echo 'asset: '.$q.'<br/>';
+        //$conn->query($q);
+        $q = 'update listing set id = '.$newId.' where id ='.$row->id;
+        echo 'map: '.$q.'<br/>';
+       // $connMap->query($q);
+        $countUpdate++;
+    }else{
+        if($newId == $row->id){
+            $error .= 'duplicate id = '.$newId.' url:'.$row->url.'<br/>';
+        }else{
+            $error .= 'old = '.$row->id.' new = '.$newId.' url:'.$row->url.'<br/>';
+        }
+        
+        $countError++;
+    }  
+}
+echo 'finnish update '.$countUpdate.'map <br/>';
+echo 'Error '.$countError.'map <br/>';
+echo $error;

@@ -1,0 +1,896 @@
+<?php
+date_default_timezone_set("Asia/Bangkok");
+//Script calculate timer
+$timer_start = microtime(true);
+//what this script for ??
+//1.update asset only changed and not SOLD
+//2.get URL link asset ONE asset per run
+//
+//result 
+//1. update asset.sold to 1 when found asset sold 
+//2. update asset information and notify us 
+include("sharelib.php");
+
+function getMap($html){
+	$html = str_replace('"','',$html);
+	$html = str_replace("'",'',$html);
+	$html = str_replace(" ",'%20',$html);	
+	$URL = between($html,'open(',',mapopen');
+	//check images
+	$file_extension = substr($URL, -3, 3);
+	$file_extension = strtolower($file_extension);
+	if($file_extension == 'jpg' OR $file_extension == 'png'){		
+		if($URL[0] == '/'){
+			//$URL = "http://asset.led.go.th".$URL;
+			$URL = "http://asset.led.go.th.rsz.io".$URL;
+		}else{
+			$post = strpos($URL, '/');
+			$URL = substr($URL,$post);
+			//$URL = "http://asset.led.go.th".$URL;
+			$URL = "http://asset.led.go.th.rsz.io".$URL;
+		}
+		$return = $URL;
+	}else{
+		
+		$return = false;
+	}
+	return $return;
+}
+
+function getImages($html){
+	$html = str_replace('newbid/img/null_aSset_pic.jpg', '', $html);
+	$html = str_replace('img/null_aSset_pic.jpg', '', $html);
+	$html = str_replace('null_aSset_pic.jpg', '', $html);
+	$html = str_replace('"', '', $html);
+	$html = str_replace("'", '', $html);
+	$html = str_replace(" ",'%20',$html);
+	$URL  = explode('src=', $html);
+	if(!empty($URL[1])){
+		$image1 = explode('width', $URL[1]);
+		if(!empty($image1[0])){
+			$images[] = $image1[0];
+		}
+	}
+	if(!empty($URL[2])){
+		$image2 = explode('width', $URL[2]);
+		if(!empty($image2[0])){
+			$images[] = $image2[0];
+		}
+	}	
+	//check images
+	foreach($images as $image){
+		$image = trim($image);
+		$file_extension = substr($image, -3, 3);
+		$file_extension = strtolower($file_extension);
+		if($file_extension == 'jpg' OR $file_extension == 'png'){	
+			if($image[0] == '/'){
+				//$image = "http://asset.led.go.th".$image;
+				$image = "http://asset.led.go.th.rsz.io".$image;
+			}else{
+				$post = strpos($image, '/');
+				$image = substr($image, $post);
+				//$image = "http://asset.led.go.th".$image;
+				$image = "http://asset.led.go.th.rsz.io".$image;
+			}			
+			$imageURL[] = $image;
+		}else{
+			$imageURL[] = '';
+		}
+	}	
+	if(sizeof($URL) == 1){
+		return false;
+	}else{
+		return $imageURL;
+	}
+}
+
+function getCals($html){
+	$count = 1;
+	while($count <> 0){
+		$pattern = array(
+			'/((bgcolor|color)|class|style)="[^>]*"/im', 
+			'/<!--(.*?)-->/im', 
+			'/(width)="([0-9]+)"/im',
+			'/(border)="([0-9]+)"/im',
+			'/align="(left|right|center)"/'
+		); 
+		$html = preg_replace($pattern, '', $html, -1, $count);
+	}
+	$html = str_replace(' ','',$html);
+	$html = str_replace(' ','',$html);
+	$html = str_replace('<font >','<font>',$html);
+	$html = str_replace('<td >','<td>',$html);
+	$num_of_row = substr_count($html, '</tr>');
+	$trIndex = $num_of_row - 1;
+	$TRs = BetweenWord($html, '<tr>', '</tr>', 0, $trIndex, 'L', 'R');	
+	//$TRs = explode('<font>',$TRs); //6 pices
+	//array_shift($TRs);
+	if(!empty($TRs)){
+		for($i=0; $i<8; $i++){				
+			if($trIndex < $i ){
+				$cal[]  = array('date'=>'', 'status'=>'');
+			}else{
+				$j = 2*$i +1;	
+				$date   = changeDateB2Y(BetweenWord($TRs, '<font>', '</font>', $i, $i, 'R', 'L'));
+				$status = cleanText(BetweenWord($TRs, '<td>', '</td>', $j, $j, 'R', 'L'));
+				$cal[]  = array('date'=>$date, 'status'=>$status);
+			}
+		}
+	}else{
+		return false;
+	}
+	return $cal;	
+}
+
+function getDetails($html){
+	$jod = BetweenWord($html,'<u>','</u>',0,0);
+	$jod = strip_tags($jod);
+	$jay = BetweenWord($html,'<u>','</u>',1,1);
+	$jay = strip_tags($jay);
+	if(empty($jod) OR empty($jay)){
+		return false;
+	}else{
+		return array("jod"=>$jod,"jay"=>$jay);
+	}
+}
+
+function cleanPrice($txtPrice = ''){
+	if(!empty($txtPrice)){
+		$txtPrice = strip_tags($txtPrice);
+		$txtPrice = trim($txtPrice);
+		$txtPrice = str_replace(',','',$txtPrice);
+		$Price = explode('.',$txtPrice);		
+		if(sizeof($Price) > 1){	
+			$txtPrice = $Price[0];
+		}
+	}
+	return $txtPrice;
+}
+
+function cleanText($html = ''){
+	if(!empty($html)){
+		$html = strip_tags($html);
+		$html = trim($html);
+	}return $html;
+}
+
+function getHardOrder($html){
+	$html = explode('-',$html);
+	if(isset($html[0]) AND isset($html[1])){
+		$orderMain 	= substr($html[0], -3); //max 3 digit
+		$order[] 	= getHardInt($orderMain);
+		$orderSub  	= substr($html[1], 0, 3);//max 3 digit
+		$order[]  	= getHardInt($orderSub);
+	}else{
+		$order[0] = 0;
+		$order[1] = 0;
+	}	
+	return $order; //(main, sub)
+}
+
+function getHardInt($txt){
+	return (int)preg_replace('/[^\-\d]*(\-?\d*).*/','$1',$txt);
+}
+
+function getMosts($html){
+	$count = 1;
+	while($count <> 0){
+		$pattern = array(
+			'/((bgcolor|color)|class|style)="[^>]*"/im', 
+			'/<!--(.*?)-->/im', 
+			'/(width)="([0-9]+)"/im',
+			'/(border)="([0-9]+)"/im',
+			'/align="(left|right|center)"/'
+		); 
+		$html = preg_replace($pattern, '', $html, -1, $count);
+	}
+	
+	$html = str_replace(' ','',$html);
+	$html = str_replace('"','',$html);
+	$html = str_replace("'",'',$html);
+	$html = str_replace(' ','',$html);
+	$html = str_replace('<font >','<font>',$html);
+	$html = str_replace('<td >','<td>',$html);
+	
+	///orders
+	//$orders = BetweenWord($html,'<font>','</font>',0,0,'R','L');
+	$htmlOrders = BetweenWord($html, '<tr>', '</tr>', 0, 0, 'R', 'L');
+	
+	//print_r($htmlOrders);
+	$htmlOrders = BetweenWord($htmlOrders, '<td', '</td>', 0, 0, 'R', 'R');
+	$htmlOrders = BetweenWord($htmlOrders, '>', '</td>', 0, 0, 'R', 'L');
+	$htmlOrders = str_replace('&nbsp;', ' ', $htmlOrders);
+	$htmlOrders = strip_tags($htmlOrders);
+	$orders 	= explode('ลำดับที่', $htmlOrders);
+	if(isset($orders[1])){
+		$orders = trim($orders[1]);
+		$orders = explode('-', $orders);
+		if(!isset($orders[1])){
+			notifyError('Has uncommon order in asset html:'.$html);
+			$orders[0] = 0;
+			$orders[1] = 0;
+		}
+	}else{
+		$orders = getHardOrder($htmlOrders);
+	}
+	$ass['sale_order_main'] = cleanPrice($orders[0]);
+	$ass['sale_order_sub']  = cleanPrice($orders[1]);
+	
+	//deed no
+	$htmlDeed 	= BetweenWord($html,'<tr>','</tr>',4,4,'R','L');
+	$htmlDeed 	= BetweenWord($htmlDeed,'<td','</td>',0,0,'R','R');
+	$htmlDeed 	= BetweenWord($htmlDeed,'>','</td>',0,0,'R','L');
+	$htmlDeed 	= str_replace('&nbsp;',' ',$htmlDeed);
+	$htmlDeed 	= strip_tags($htmlDeed);
+	$deed_no 	= explode('น.3ก',$htmlDeed);
+	if(isset($deed_no[1])){
+		//array('ที่ดินโฉนด/', '34341')
+		$ass['deed_no'] = $deed_no[1];
+	}else{		
+		$deed_no 	= str_replace('น.ส3/น.3ก',' ',$htmlDeed);
+		$ass['deed_no'] = getHardInt($deed_no);
+		notifyError('Has uncommon deed_no in asset html:'.$html);
+	}
+	
+	//land owner
+	$ass['land_owner'] = BetweenWord($html, 'มีชื่อ', 'ผู้ถือกรรมสิทธิ์', 0, 0, 'R', 'L');
+	$ass['land_owner'] = str_replace('เป็น', '', $ass['land_owner']);
+	$ass['land_owner'] = trim(strip_tags($ass['land_owner']));
+	
+	//address no
+	$ass['addrno'] = trim(strip_tags(BetweenWord($html, '>เลขที่', 'ศาล', 0, 0, 'R', 'L')));
+	
+	//cort	
+	$htmlSarn = BetweenWord($html, 'ศาล', 'เงื่อนไขผู้เข้าสู้ราคา', 0, 0, 'L', 'L');
+	$htmlSarn = BetweenWord($htmlSarn, 'ศาล', '</td>', 0, 0, 'R', 'L');
+	$htmlSarn = str_replace('&nbsp;', ' ', $htmlSarn);
+	$ass['cort'] = strip_tags($htmlSarn);
+	
+	//pre mix
+	$htmlMix = BetweenWord($html, 'เงื่อนไขผู้เข้าสู้ราคา', 'วันที่ประกาศขึ้นเว็บ', 0, 0, 'L', 'L');
+	
+	//condition
+	$htmlCondition = BetweenWord($htmlMix, 'เงื่อนไขผู้เข้าสู้ราคา', '<tr>', 0, 0, 'L', 'L');	
+	$condition = BetweenWord($htmlCondition, 'เงื่อนไขผู้เข้าสู้ราคา', '</td>', 0, 0, 'R', 'L');
+	$condition = str_replace('<b>', '', $condition);
+	$condition = str_replace('</b>', '', $condition);
+	$ass['conditions'] = stripInvisible($condition);
+	
+	//bond
+	$bonds = BetweenWord($htmlCondition, '<font>', '</font>', 0, 0, 'R', 'L');	
+	$bonds = stripInvisible($bonds);
+	$ass['bond'] = cleanPrice($bonds);	
+	
+	//prepare for next
+	
+	$htmlMix = BetweenWord($htmlMix,'<tr>', '</tr>', 1, 7, 'L', 'R');
+	
+	//debt && price 1-5
+	$ass['debt']    = cleanPrice(BetweenWord($htmlMix,'<font>','</font>',0,0,'R','L'));
+	$ass['price1']  = cleanPrice(BetweenWord($htmlMix,'<font>','</font>',1,1,'R','L'));
+	$ass['price2']  = cleanPrice(BetweenWord($htmlMix,'<font>','</font>',2,2,'R','L'));
+	$ass['price3']  = cleanPrice(BetweenWord($htmlMix,'<font>','</font>',3,3,'R','L'));
+	$ass['price4']  = cleanPrice(BetweenWord($htmlMix,'<font>','</font>',4,4,'R','L'));
+	$ass['price5']  = cleanPrice(BetweenWord($htmlMix,'<font>','</font>',5,5,'R','L'));
+	
+	$htmlFix = str_replace('<font>', '', $htmlMix);
+	$htmlFix = str_replace('</font>', '', $htmlFix);
+	$htmlFix = str_replace('colspan=3', '', $htmlFix);
+	if($ass['debt'] == ''){
+		$ass['debt'] = BetweenWord($htmlMix,'<td>','</td>',0,0,'R','L');
+	}
+	if($ass['price1'] == ''){
+		$ass['price1'] = BetweenWord($htmlMix,'<td>','</td>',1,1,'R','L');
+	}
+	if($ass['price2'] == ''){
+		$ass['price2'] = BetweenWord($htmlMix,'<td>','</td>',2,2,'R','L');
+	}
+	if($ass['price3'] == ''){
+		$ass['price3'] = BetweenWord($htmlMix,'<td>','</td>',3,3,'R','L');
+	}
+	if($ass['price4'] == ''){
+		$ass['price4'] = BetweenWord($htmlMix,'<td>','</td>',4,4,'R','L');
+	}
+	if($ass['price5'] == ''){
+		$ass['price5'] = BetweenWord($htmlMix,'<td>','</td>',5,5,'R','L');
+	}
+	
+	$htmlPublish = BetweenWord($html, 'วันที่ประกาศขึ้นเว็บ', '</table>', 0, 0, 'L', 'L');
+	$htmlPublish = BetweenWord($htmlPublish, 'วันที่ประกาศขึ้นเว็บ', '</td>', 0, 0, 'R', 'L');
+	$htmlPublish = str_replace('<b>', '', $htmlPublish);
+	$htmlPublish = str_replace('</b>', '', $htmlPublish);
+	$htmlPublish = str_replace('<font>', '', $htmlPublish);
+	$htmlPublish = str_replace('</font>', '', $htmlPublish);
+	$htmlPublish = str_replace('&nbsp;', ' ', $htmlPublish);
+	$htmlPublish = strip_tags($htmlPublish);
+	$htmlPublish = trim($htmlPublish);
+	$ass['publish'] = changeDateB2Y($htmlPublish);	
+	
+	return $ass;
+}
+
+function changeDateB2Y($date = '99/99/9999')
+{
+	// d/m/B ->/d/m/Y -> Y-m-d
+	$date = strip_tags($date);
+	$date = trim($date);
+	$numA = substr_count($date, '/');
+	$numB = substr_count($date, '-');
+	if($numA == 2){
+		$seperator = '/';
+	}elseif($numB == 2){
+		$seperator = '-';
+	}else{
+		//unknow date format
+		return $date;
+	}
+	$d = explode($seperator, $date);
+	$d[2] = intval($d[2]);
+	if($d[2] > 2400){
+		$d[2] = $d[2]-543;
+		$tmp = $d;
+	}
+	$d[0] =  $tmp[2];
+	$d[1] =  $tmp[1];
+	$d[2] =  $tmp[0];
+	$date = implode('-',$d);
+    return $date;
+}
+
+function ripAssetlink($link){
+	$asset = clone $link;
+	$random = time();
+	$html  = file_get_contents_curl($link->url."&".$random);
+	if(!empty($html)){	
+		//chk id gen right ?
+		$asset->id = genAssetID($link->url);
+		$html = iconv("windows-874", "utf-8", $html);
+		$html = str_replace('TABLE','table', $html);
+		$html = str_replace('<IMG','<img', $html);
+		$html = str_replace('TD>','td>', $html);
+		$html = str_replace('TR>','tr>', $html);
+		
+		//extract data phase2
+		//rip almost garbage
+		$html 	   = removeHTMLComment($html);
+		$mainTable = BetweenWord($html, '<table', '</table>', 2, 4, 'L', 'R', 'C');
+		
+		//map + reinit from
+		$mapTable  = BetweenWord($mainTable, '<table', '</table>', 4, 3, 'L', 'R', 'C');	
+		$mainTable = BetweenWord($mainTable, '<table', '</table>', 4, 3, 'L', 'R', 'R');
+		$mapURL    = getMap($mapTable);
+		if($mapURL === false){
+			notifyUpdate('fails on extract map from :'.$mapTable.'\r\nURL:'.$link->url);
+		}else{
+			$asset->map = $mapURL;
+		}
+		
+		//image + reinit from
+		$imagesTable = BetweenWord($mainTable, '<table', '</table>', 3, 3, 'L', 'R', 'C');	
+		$mainTable   = BetweenWord($mainTable, '<table', '</table>', 3, 3, 'L', 'R', 'R');
+		$imagesURL   = getImages($imagesTable);
+		if($imagesURL === false){
+			notifyUpdate('fails on extract image from :'.$imagesTable.'\r\nURL:'.$link->url);
+		}else{
+			if(isset( $imagesURL[0]) AND !empty( $imagesURL[0])){
+				$asset->image1 = $imagesURL[0];
+			}
+			if(isset( $imagesURL[1]) AND !empty( $imagesURL[1])){
+				$asset->image2 = $imagesURL[1];
+			}
+		}
+		
+		//remove some garbage from othet tabke left
+		$mainTable = BetweenWord($mainTable, '<table', '</table>', 0, 2, 'L', 'R', 'C');
+		
+		//calendar + reinit from
+		$calTable  = BetweenWord($mainTable, '<table', '</table>', 2, 1, 'L', 'R', 'C');		
+		$mainTable = BetweenWord($mainTable, '<table', '</table>', 2, 1, 'L', 'R', 'R');
+		$cal = getCals($calTable);
+
+		$asset->sold = 0; //we wish they not sold...
+		if($cal === false){
+			notifyUpdate('fails on extract calenda from :'.$calTable.'\r\nURL:'.$link->url);
+		}else{
+			$i = 0;$j = 1;
+			for($i = 0; $i<8; $i++){
+				$j  = $i+1;
+				$dA = 'date'.$j;
+				$dS = 'date'.$j.'_status';
+				if(!empty($cal[$i]['date'])){
+					$asset->$dA = $cal[$i]['date'];
+					//$asset->$dA = date("Y-m-d",strtotime($cal[$i]['date']));
+					$asset->$dS = $cal[$i]['status'];
+					if(trim($cal[$i]['status']) == 'ขายได้' OR trim($cal[$i]['status']) == 'ถอนการยึด'){
+						$asset->sold = 1;
+					}
+				}else{
+					$asset->$dA = '';
+					$asset->$dS = '';
+				}
+			}
+		}
+		
+		//details + reinit from
+		$detailsTable = BetweenWord($mainTable, '<table', '</table>', 1, 0, 'L', 'R', 'C');	
+		/*$details = getDetails($detailsTable);
+		if($details === false){
+			notifyError('fails on extract details from :'.$detailsTable.'\r\nURL:'.$link->url);
+		}else{
+			$asset->jod = $details["jod"];
+			$asset->jay = $details["jay"];
+		}*/
+		
+		$mainTable = BetweenWord($mainTable, '<table', '</table>', 1, 0, 'L', 'R', 'R');
+		
+		$ass = getMosts($mainTable);
+		if($ass === false){
+			notifyUpdate('fails on extract almosts data from URL:'.$link->url);
+		}else{
+			$asset->sale_order_main = $ass['sale_order_main'];
+			$asset->sale_order_sub = $ass['sale_order_sub'];	
+			$asset->deed_no = $ass['deed_no'];
+			$asset->land_owner = $ass['land_owner'];
+			$asset->addrno = $ass['addrno'];
+			$asset->cort = $ass['cort'];
+			$asset->bond = $ass['bond'];
+			$asset->conditions = $ass['conditions'];
+			$asset->debt = $ass['debt'];
+			$asset->price1 = $ass['price1'];
+			$asset->price2 = $ass['price2'];
+			$asset->price3 = $ass['price3'];
+			$asset->price4 = $ass['price4'];
+			$asset->price5 = $ass['price5'];		
+			$asset->publish = date("Y-m-d", strtotime($ass['publish']));
+		}
+		return $asset;
+	}else{
+		//link false
+		return false;
+	}	
+}
+
+//update queqe
+function q($feildname, $oldvalue = '', $newvalue = '', $type = 't'){
+	$q = 0;
+	if(!empty($oldvalue)){
+		$oldvalue = trim($oldvalue);
+		$oldvalue = str_replace("'",'',$oldvalue);
+		$oldvalue = str_replace('"','',$oldvalue);
+	}
+	if(!empty($newvalue)){
+		$newvalue = trim($newvalue);
+		$newvalue = str_replace("'",'',$newvalue);
+		$newvalue = str_replace('"','',$newvalue);
+	}
+	$update = '';
+	switch($type){
+		case 'number':
+		case 'n':
+			$return_type = 'n';
+			if(($oldvalue <> $newvalue) AND $newvalue <> ''){
+				$update = $newvalue;
+				$q = 1;				
+			}
+			break;	
+		case 'text':
+		case 't':
+			$return_type = 't';
+			if(($oldvalue <> $newvalue) AND $newvalue <> ''){
+				$update = $newvalue;
+				$q = 1;
+			}
+			break;	
+		case 'date':
+		case 'd':
+			$return_type = 'd';
+			if(($oldvalue <> $newvalue) AND $newvalue <> ''){
+				$update = date("Y-m-d", strtotime($newvalue));
+				$q = 1;
+			}
+			break;
+		case 'datetime':
+		case 'dt':
+		case 'time':
+			$return_type = 'dt';
+			if(($oldvalue <> $newvalue) AND $newvalue <> ''){
+				$update = date("Y-m-d H:i:s", strtotime($newvalue));
+				$q = 1;
+			}
+			break;
+	}
+	if($q == 1){
+		$result = array('update'=>$feildname, 'oldvalue'=>$oldvalue, 'newvalue'=>$update, 'type'=> $return_type);
+		return  $result;
+	}
+}
+
+function buildUpdateQuery($table, $arrUpdate, $where){
+	if(!empty($arrUpdate)){
+		$updateQ  = 'UPDATE '.$table." \r\n";
+		$updateQ .= "SET \r\n";
+
+		foreach($arrUpdate as  $f){
+			$key	  = $f['update'];
+			$value	  = $f['newvalue'];
+			$type	  = $f['type'];
+			switch($type){
+				case 'text':
+				case    't':
+				case 'date':
+				case    'd':
+				case 'datetime':
+				case   'dt':
+				case 'time':
+					$value = '"'.$value.'"';
+					break;				
+			}
+			$q[] = ' '.$key.' = '.$value.' ';
+		}
+		
+		$updateQ .= implode(", ", $q);
+		
+		$updateQ .= "\r\n".$where;
+	}else{
+		$updateQ = false;
+	}
+	return $updateQ;
+}
+
+function showWnumberReport($sizeXw){
+	if($sizeXw == 0){
+		return '-';
+	}else{
+		return $sizeXw;
+	}
+}
+
+function showPramulDateReport($PramulDate){
+	$craftDate = strtotime($PramulDate);
+	if($craftDate !== false){
+		$year = date("Y", $craftDate);
+		$currentyear = date("Y");
+		if(abs($currentyear - $year) <= 5){
+			$return = "วันที่ ".date("d/m/Y", $craftDate);
+		}else{
+			$return = $PramulDate;
+		}		
+	}else{
+		$return = $PramulDate;
+	}
+	return $return;
+}
+
+function showImageReport($imgURL){
+	if(!empty($imgURL)){
+		$imgURL = str_replace('.rsz.io', '', $imgURL);
+		$return = '<img src='.$imgURL.' alt="asset image" width="450">';	
+	}else{
+		$return = $imgURL;
+	}
+	return $return;
+}
+
+function buildUpdateReport($assetId, $arrUpdate){	
+	$objAsset = getObjAsset($assetId);
+	$reportQ  = '';
+	//pid 1 = bkk hardcode
+	if($objAsset->pen == 'bangkok'){
+		$tumponText = 'แขวง'.$objAsset->tumbon.' ';
+		$amphurText = ' เขต'.$objAsset->ath.' ';
+		$provinceText = '';
+	}else{
+		$tumponText = 'ตำบล'.$objAsset->tumbon.' ';
+		$amphurText = ' อำเภอ'.$objAsset->ath.' ';
+		$provinceText = 'จังหวัด'.$objAsset->pth.' ';
+	}
+	
+	$reportQ  = mailTableHeader();
+	$reportQ .= mailRow("รหัสทรัพย์",$assetId.' '.$objAsset->law_suit_no.'/'.$objAsset->law_suit_year);
+	$reportQ .= mailRow("ลิ้ง แสดง สินทรัพย์",'<a href="'.$objAsset->url.'" target="_blank">สินทรัพย์</a>');
+	$reportQ .= mailRow("ลำดับขาย",$objAsset->sale_order_main .'-'.$objAsset->sale_order_sub);
+	$reportQ .= mailRow("ประเภททรัพทย์",$objAsset->tth);
+	$reportQ .= mailRow("ที่ตั้งทรัพทย์",$tumponText.$amphurText.$provinceText);
+	$reportQ .= mailRow("เลขโฉนด",$objAsset->deed_no.'   เจ้าของชื่อ '. $objAsset->land_owner);
+	$reportQ .= mailRow("ขนาดพื้นที่",showWnumberReport($objAsset->size400w)."ไร่ ".showWnumberReport($objAsset->size100w)."งาน ".showWnumberReport($objAsset->sizew)."ตรว.");
+	$reportQ .= mailRow("ราคาประเมิน",number_format($objAsset->estimated_price)."บาท");
+	$reportQ .= mailRow("การติดจำนอง",$objAsset->debt);
+	$reportQ .= mailTableFooter();
+	$reportQ .= mailTableHeader();
+	$reportQ .= mailRow("เงื่อนไขผู้เข้าสู้ราคา",$objAsset->conditions);
+	$reportQ .= mailRow("นัดที่ 1  ",showPramulDateReport($objAsset->date1) ,$objAsset->date1_status);
+	$reportQ .= mailRow("นัดที่ 2   ",showPramulDateReport($objAsset->date2) ,$objAsset->date2_status);
+	$reportQ .= mailRow("นัดที่ 3   ",showPramulDateReport($objAsset->date3) ,$objAsset->date3_status);
+	$reportQ .= mailRow("นัดที่ 4   ",showPramulDateReport($objAsset->date4) ,$objAsset->date4_status);
+	$reportQ .= mailRow("นัดที่ 5   ",showPramulDateReport($objAsset->date5) ,$objAsset->date5_status);
+	$reportQ .= mailRow("นัดที่ 6   ",showPramulDateReport($objAsset->date6) ,$objAsset->date6_status);
+	if($objAsset->date7 <> '0000-00-00'){
+		$reportQ .= mailRow("นัดที่ 7   ",showPramulDateReport($objAsset->date7) ,$objAsset->date7_status);
+	}
+	if($objAsset->date8 <> '0000-00-00'){
+		$reportQ .= mailRow("นัดที่ 8   ",showPramulDateReport($objAsset->date8) ,$objAsset->date8_status);
+	}	
+	$reportQ .= mailTableFooter();
+	$reportQ .= mailTableHeader();
+	$reportQ .= mailRow("พบทรัพย์ครั้งแรก", date("d/m/Y H:i:s",strtotime($objAsset->first_seen)));	
+	$updateCount = sizeof($arrUpdate);
+	if($updateCount > 0){
+		$i = 1;
+		foreach($arrUpdate as $updates){
+			if($i%10==0){
+				$uplist[] = ' '.$updates['update'].", \r\n";
+			}else{
+				$uplist[] = ' '.$updates['update'].', ';
+			}			
+			$i++;
+		}
+		$uplist = implode($uplist);
+		$reportQ .= mailRow("ครั้งนี้มีการอัพเดตข้อมูล  ".$updateCount." รายการ ดังนี้ <br/>".$uplist);
+		$reportQ .= mailRow("อัพเดตครั้งต่อไป", date("d/m/Y H:i:s",strtotime($objAsset->next_update)));		
+	}
+	$reportQ .= mailTableFooter();
+	$reportQ .= mailTableHeader();
+	if(!empty($objAsset->image1) OR !empty($objAsset->image2) OR !empty($objAsset->map)){
+		$reportQ .= mailRow('ภาพทรัพย์ ');
+		if(!empty($objAsset->image1)){
+			$reportQ .= mailRow(showImageReport($objAsset->image1));
+		}
+		if(!empty($objAsset->image2)){
+			$reportQ .= mailRow(showImageReport($objAsset->image2));
+		}
+		if(!empty($objAsset->map)){
+			$reportQ .= mailRow(showImageReport($objAsset->map));
+		}
+	}
+	$reportQ .= mailTableFooter();
+	
+	//$reportQ .= $objAsset->url."</br>";
+	$footprint = explode('?',$objAsset->url);
+	if(isset($footprint[1])){
+		$reportQ .= mailTableHeader();
+		$footprint[1] = str_replace('&', ', ', $footprint[1]);
+		$reportQ .= mailRow('Foot print ',$footprint[1]);
+		$reportQ .= mailTableFooter();
+	}
+	$reportQ .= "ดูข้อมูลทั้งหมดได้ที่  http://add.in.th/view.php";
+	return $reportQ;
+}
+
+function updateAsset($link, $newData)
+{
+	$conn = db();
+	$anyUpdate = 0;
+	//$updateTime = "+".rand(300, 2880)." mins"; //5-48hrs delays
+	if($newData->sold == 0){		
+		$return = 0;
+		//saveAssetDB
+		//$updateQ[] = q('id', $link->id, genAssetID($newData->url), 'n');
+		$updateQ[] = q('page_id', $link->page_id, $newData->page_id, 'n');
+		$updateQ[] = q('url', $link->url, $newData->url, 't');
+		$updateQ[] = q('sale_order_main', $link->sale_order_main, $newData->sale_order_main, 'n');
+		$updateQ[] = q('sale_order_sub', $link->sale_order_sub, $newData->sale_order_sub, 'n'); 
+		$updateQ[] = q('law_suit_no', $link->law_suit_no, $newData->law_suit_no, 't'); 
+		$updateQ[] = q('law_suit_year', $link->law_suit_year, $newData->law_suit_year, 'n'); 
+		$updateQ[] = q('type_id', $link->type_id, $newData->type_id, 'n'); 
+		$updateQ[] = q('size400w', $link->size400w, $newData->size400w, 'n'); 
+		$updateQ[] = q('size100w', $link->size100w, $newData->size100w, 'n'); 
+		$updateQ[] = q('sizew', $link->sizew, $newData->sizew, 'n'); 
+		$updateQ[] = q('estimated_price', $link->estimated_price, $newData->estimated_price, 'n');		
+		$updateQ[] = q('tumbon', $link->tumbon, $newData->tumbon, 't');
+		$updateQ[] = q('amphur_id', $link->amphur_id, $newData->amphur_id, 'n');
+		$updateQ[] = q('deed_no', $link->deed_no, $newData->deed_no, 'n');
+		$updateQ[] = q('land_owner', $link->land_owner, $newData->land_owner, 't');
+		$updateQ[] = q('addrno', $link->addrno, $newData->addrno, 't');
+		$updateQ[] = q('cort', $link->cort, $newData->cort, 't');
+		$updateQ[] = q('bond', $link->bond, $newData->bond, 'n');
+		$updateQ[] = q('conditions', $link->conditions, $newData->conditions, 't');
+		$updateQ[] = q('date1', $link->date1, $newData->date1, 'd');
+		$updateQ[] = q('date1_status', $link->date1_status, $newData->date1_status, 't');
+		$updateQ[] = q('date2', $link->date2, $newData->date2, 'd');
+		$updateQ[] = q('date2_status', $link->date2_status, $newData->date2_status, 't');
+		$updateQ[] = q('date3', $link->date3, $newData->date3, 'd');
+		$updateQ[] = q('date3_status', $link->date3_status, $newData->date3_status, 't');
+		$updateQ[] = q('date4', $link->date4, $newData->date4, 'd');
+		$updateQ[] = q('date4_status', $link->date4_status, $newData->date4_status, 't');
+		$updateQ[] = q('date5', $link->date5, $newData->date5, 'd');
+		$updateQ[] = q('date5_status', $link->date5_status, $newData->date5_status, 't');
+		$updateQ[] = q('date6', $link->date6, $newData->date6, 'd');
+		$updateQ[] = q('date6_status', $link->date6_status, $newData->date6_status, 't');
+		$updateQ[] = q('date7', $link->date7, $newData->date7, 'd');
+		$updateQ[] = q('date7_status', $link->date7_status, $newData->date7_status, 't');
+		$updateQ[] = q('date8', $link->date8, $newData->date8, 'd');
+		$updateQ[] = q('date8_status', $link->date8_status, $newData->date8_status, 't');
+		$updateQ[] = q('debt', $link->debt, $newData->debt, 't');
+		$updateQ[] = q('price1', $link->price1, $newData->price1, 't');
+		$updateQ[] = q('price2', $link->price2, $newData->price2, 't');
+		$updateQ[] = q('price3', $link->price3, $newData->price3, 't');
+		$updateQ[] = q('price4', $link->price4, $newData->price4, 't');
+		$updateQ[] = q('price5', $link->price5, $newData->price5, 't');
+		$updateQ[] = q('publish', $link->publish, $newData->publish, 'd');
+		$updateQ[] = q('image1', $link->image1, $newData->image1, 't');
+		$updateQ[] = q('image2', $link->image2, $newData->image2, 't');
+		$updateQ[] = q('map', $link->map, $newData->map, 't');
+		$updateQ[] = q('sold', $link->sold, $newData->sold, 'n');
+		
+		//filter empty array
+		$updateQ = array_filter($updateQ);
+		$anyUpdate = sizeof($updateQ);
+	}else{
+		$anyUpdate = 1;
+		$updateQ[] = array('update'=>"sold", 'oldvalue'=>$link->sold, 'newvalue'=>1, 'type'=>'n');
+	}
+	
+	$currentDatetime 	= date("Y-m-d H:i:s");
+	$updateNexttime 	= getNextUpdate($objAsset, $link->last_update);
+	//$updateNexttime 	= date("Y-m-d H:i:s", strtotime($updateTime));
+	if($anyUpdate > 0){		
+		$updateQ[] = array('update'=>"last_update", 'oldvalue'=>$link->last_update, 'newvalue'=>$currentDatetime, 'type'=>'dt');		
+	}
+	if($link->first_seen == '' OR $link->first_seen == "2011-11-11 00:00:00"){
+		$updateQ[] = array('update'=>"first_seen", 'oldvalue'=>$link->first_seen, 'newvalue'=>$currentDatetime, 'type'=>'dt');
+	}
+	$updateQ[] = array('update'=>"last_seen", 'oldvalue'=>$link->last_seen, 'newvalue'=>$currentDatetime, 'type'=>'dt');
+	$updateQ[] = array('update'=>"next_update", 'oldvalue'=>$link->next_update, 'newvalue'=>$updateNexttime, 'type'=>'dt');
+	
+	$updateTable = 'asset';
+	$where = 'WHERE id = '.$link->id;
+	$q = buildUpdateQuery($updateTable, $updateQ, $where);
+	
+	if($q !== false){
+		$result = $conn->query($q);
+		if ($conn->affected_rows > 0 AND $anyUpdate > 0){
+			notifyUpdate(buildUpdateReport($link->id, $updateQ),'รายงาน การปรับปรุงข้อมูลของสินทรัพย์');
+		}elseif($anyUpdate > 0){		
+			notifyError('fails query in saveAssetDB:'.$q);
+		}
+	}
+}
+
+
+//direct acess this page 
+//__FILE__?console
+if((isset($_POST["id"]) and !empty($_POST["id"])) 
+	OR (isset($_POST["url"]) AND !empty($_POST["url"])) 
+	OR (isset($_GET["console"]) AND empty($_GET["console"]))){
+
+	$link_id  = 0;
+	$link_url = '';
+	$newData  = false;
+	$link  	  = false;
+
+	//get Data from ID
+	if(isset($_POST["id"]) and !empty($_POST["id"])){
+		$link_id = $_POST["id"];
+	}
+
+	//get Data from url
+	if(isset($_POST["url"]) AND !empty($_POST["url"])){
+		$link_url = $_POST["url"];
+		$link_url = strtolower($link_url);
+		$link_url = trim($link_url);
+		$link_url = str_replace('led.go.th', '1038529402.rsc.cdn77.org', $link_url);
+		$link_id = genAssetID($link_url);
+	}
+
+	if(!empty($link_id)){
+		$link = getObjAsset($link_id);	
+		if($link !== false){
+			$newData = ripAssetlink($link);
+		}
+		
+		if($newData === false){
+			$notifyText = 'Invalid input';
+		}else{
+			updateAsset($link, $newData);
+			$notifyText = "updateAsset sucess id ={$link_id}\r\n";
+		}
+	}	
+	
+	//show menu
+	echo htmlHeader();
+?>
+<style>
+	a.nav{
+		background-color: #d64078;
+		color: white;
+		border-radius: .3em;
+		padding: .2em 0;
+		position: relative;
+		margin: 0 1.5em;
+		width: 10em;
+		display: inline-block;
+		text-decoration: none;
+		border: solid #b03060 1px;
+		border-bottom: solid #b03060 4px;
+		text-shadow: 0px 2px 0 #b03060;
+		-webkit-transition: all 0.1s ease-out;
+		-moz-transition: all 0.1s ease-out;
+		-o-transition: all 0.1s ease-out;
+		transition: all 0.1s ease-out;
+	}
+	#main {
+	  width: 600px;
+	  margin: 20px auto;
+	  background-color:#eee;
+	}
+  .simple {
+    width: 500px;
+	padding:20px 10px;
+    margin: 20px auto;
+    -webkit-box-sizing: content-box;
+       -moz-box-sizing: content-box;
+            box-sizing: content-box;
+  }
+
+  .input{
+	   width: 300px;
+	   padding:10px;
+	   font-size:16px;
+  }
+    .btn{
+	   width: 100px;
+	   padding:10px;
+	   font-size: 13px;
+  }
+  .fancy {
+    width: 500px;
+    margin: 20px auto;
+    padding: 50px;
+    border-width: 10px;
+    -webkit-box-sizing: content-box;
+       -moz-box-sizing: content-box;
+            box-sizing: content-box;
+  }
+</style>
+<div id="main">
+<form action="getLinkContent.Direct.php?console" method="post" class="simple">
+  <div class="box">Asset ID:<br>
+	<input type="text" name="id" value="" class="input">
+  </div><br>
+  <div class="box">ASSET URL:<br>
+	<input type="text" name="url" value="" class="input">
+	<input type="submit" value="Submit" class="btn">
+  </div>
+</form> 
+</div>
+<br/>
+<?php
+	if(!empty($notifyText)){
+		echo $notifyText;
+	}
+	if(!empty($newData)){
+		echo '<br/><pre>';
+		print_r($newData);
+		echo '</pre>';
+	}
+	echo htmlFooter();	
+}else{
+	//$fectLimit = 10;
+	$fectLimit = rand(5, 10); //range 5-10
+	$newData = new stdClass();
+	$conn = db();
+	$q = "SELECT * \n"
+		. "FROM `asset` \n"
+		. "where sold = 0 \n"
+		. "ORDER BY `asset`.`next_update` ASC \n"
+		. "LIMIT ".$fectLimit;
+	$result = $conn->query($q);
+	if ($conn->affected_rows > 0){
+		while($link = $result->fetch_object()){
+			$newData = ripAssetlink($link);
+			if(empty($newData) AND ($link->id <> '')){
+				$deleteBadLink = 'UPDATE `asset` SET sold = 2 WHERE id = '.$linkQ->id;
+				$result = $conn->query($deleteBadLink);
+				notifyError('Delete bad link from asset url = '.$link->url);
+			}else{
+				updateAsset($link, $newData);
+			}
+		}
+	}else{
+		$timer_end = microtime(true);
+		$execution_time = $timer_end - $timer_start;
+		$notifyMail  = "ตอนนี้การอัพเดต จำนวนสินทรัพทย์ ไม่มี หลงเหลืออยู่แล้ว ควรลด ปริมาณการอัพเดต  ".__FILE__." ลง อีกนิดนึง\r\n";
+		$notifyMail .= "เวลาที่ใช้ไป  คือ ".$execution_time.'วินาที สำหรับการดึงข้อมูล จำนวน '.$fectLimit."รายการ\r\n"; 
+		notifyError($notifyMail);
+	}
+}

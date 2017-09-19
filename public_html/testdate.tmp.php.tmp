@@ -1,0 +1,18 @@
+<?php
+date_default_timezone_set("Asia/Bangkok");
+//Script calculate timer
+$timer_start = microtime(true);
+//what this script for ??
+//1.get URL link asset from update Query
+//
+//result 
+//1. store link -> page
+//2. reduct amont of page in page_q
+include("sharelib.php");
+
+
+$assetID = 4277981191;
+$objAsset = getObjAsset($assetID);
+$nextupdate = getNextUpdate($objAsset);
+
+echo $nextupdate;

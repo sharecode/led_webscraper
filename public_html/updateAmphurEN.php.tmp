@@ -1,0 +1,27 @@
+<?php
+include("sharelib.php");
+
+$conn = db();
+$q = 'SELECT 
+`amphur`.`th` as ath,
+`newamphur`.`en` as newen
+FROM  `amphur`
+LEFT JOIN `newamphur`  ON `amphur`.`th` = `newamphur`.`th`
+WHERE `amphur`.`en` = "temp" AND `newamphur`.`en` IS NOT NULL ';
+$result = $conn->query($q);
+while($row = $result->fetch_object()){
+	$as[] = $row;
+}
+$docount = 0;
+foreach($as as $a){
+	$q = 'UPDATE `amphur` SET `en`= "'.$a->newen.'" WHERE `amphur`.`th` = "'.$a->ath.'"';
+	$conn->query($q);
+	$result = $conn->query($q);
+	if($result !== false){
+		$docount++;
+	}
+}
+echo 'update '.$docount.' from '.sizeof($as);
+if($docount == 0){
+	echo '<br/>no need update this script anymore';
+}

@@ -1,0 +1,37 @@
+<table style="width:100%;border:1px #ccc solid;background-color:#eee;"><tr><td style="border: #ccc solid 1px;background: orange;width:144px;text-align:center;padding: 5px;">26/01/2017 22:24:01</td><td align="left" style="border:1px #ccc solid;padding: 5px;">gatLinkList report</td></tr><tr><td></td><td style="vertical-align: top;background: #fff;padding: 5px;">ตอนนี้สินทรัพย์  ในคิว ทั้งหมด ได้ทำการดึงข้อมูลเบื้องต้นครบถ้วนแล้ว ควรลด ปริมาณการอัพเดต  /home/addinth/public_html/getLinkList.CRON.php ลง
+เวลาที่ใช้ไป  คือ 0.0841648578644วินาที
+</td></tr></table>
+<table style="width:100%;border:1px #ccc solid;background-color:#eee;"><tr><td style="border: #ccc solid 1px;background: orange;width:144px;text-align:center;padding: 5px;">26/01/2017 22:32:04</td><td align="left" style="border:1px #ccc solid;padding: 5px;">gatLinkList report</td></tr><tr><td></td><td style="vertical-align: top;background: #fff;padding: 5px;">จำนวนหน้า ที่เหลืออยู่คิว รอการดึงลิ้ง จำนวน  4 กลุ่ม จำนวนเพจรวมทั้งหมด 4เพจ 
+ระบบอัพเดตจากไฟล์   /home/addinth/public_html/getLinkList.CRON.php
+เวลาที่ใช้ไป  คือ 2.55163598061วินาที</td></tr></table>
+<table style="width:100%;border:1px #ccc solid;background-color:#eee;"><tr><td style="border: #ccc solid 1px;background: orange;width:144px;text-align:center;padding: 5px;">26/01/2017 22:40:16</td><td align="left" style="border:1px #ccc solid;padding: 5px;">gatLinkList report</td></tr><tr><td></td><td style="vertical-align: top;background: #fff;padding: 5px;">จำนวนหน้า ที่เหลืออยู่คิว รอการดึงลิ้ง จำนวน  3 กลุ่ม จำนวนเพจรวมทั้งหมด 3เพจ 
+ระบบอัพเดตจากไฟล์   /home/addinth/public_html/getLinkList.CRON.php
+เวลาที่ใช้ไป  คือ 15.3755040169วินาที</td></tr></table>
+<table style="width:100%;border:1px #ccc solid;background-color:#eee;"><tr><td style="border: #ccc solid 1px;background: orange;width:144px;text-align:center;padding: 5px;">26/01/2017 22:48:03</td><td align="left" style="border:1px #ccc solid;padding: 5px;">gatLinkList report</td></tr><tr><td></td><td style="vertical-align: top;background: #fff;padding: 5px;">จำนวนหน้า ที่เหลืออยู่คิว รอการดึงลิ้ง จำนวน  2 กลุ่ม จำนวนเพจรวมทั้งหมด 2เพจ 
+ระบบอัพเดตจากไฟล์   /home/addinth/public_html/getLinkList.CRON.php
+เวลาที่ใช้ไป  คือ 1.76066493988วินาที</td></tr></table>
+<table style="width:100%;border:1px #ccc solid;background-color:#eee;"><tr><td style="border: #ccc solid 1px;background: orange;width:144px;text-align:center;padding: 5px;">26/01/2017 22:56:04</td><td align="left" style="border:1px #ccc solid;padding: 5px;">gatLinkList report</td></tr><tr><td></td><td style="vertical-align: top;background: #fff;padding: 5px;">จำนวนหน้า ที่เหลืออยู่คิว รอการดึงลิ้ง จำนวน  1 กลุ่ม จำนวนเพจรวมทั้งหมด 1เพจ 
+ระบบอัพเดตจากไฟล์   /home/addinth/public_html/getLinkList.CRON.php
+เวลาที่ใช้ไป  คือ 3.01093816757วินาที</td></tr></table>
+<table style="width:100%;border:1px #ccc solid;background-color:#eee;"><tr><td style="border: #ccc solid 1px;background: orange;width:144px;text-align:center;padding: 5px;">26/01/2017 23:00:03</td><td align="left" style="border:1px #ccc solid;padding: 5px;">gatLinkList report</td></tr><tr><td></td><td style="vertical-align: top;background: #fff;padding: 5px;">จำนวนหน้า ที่เหลืออยู่คิว รอการดึงลิ้ง จำนวน  0 กลุ่ม จำนวนเพจรวมทั้งหมด 0เพจ 
+ระบบอัพเดตจากไฟล์   /home/addinth/public_html/getLinkList.CRON.php
+เวลาที่ใช้ไป  คือ 2.31043219566วินาที</td></tr></table>
+<table style="width:100%;border:1px #ccc solid;background-color:#eee;"><tr><td style="border: #ccc solid 1px;background: orange;width:144px;text-align:center;padding: 5px;">26/01/2017 23:08:01</td><td align="left" style="border:1px #ccc solid;padding: 5px;">ตาราง เพจ คิว ว่างแล้ว</td></tr><tr><td></td><td style="vertical-align: top;background: #fff;padding: 5px;">ตอนนี้ตาราง เพจ คิว ว่างแล้ว กำลังจะเริ่มรอบใหม่ โดย มีเพจที่ รออยู่ทั้งหมด 25 กลุ่ม จำนวนเพจรวมทั้งหมด 26เพจ</td></tr></table>
+<table style="width:100%;border:1px #ccc solid;background-color:#eee;"><tr><td style="border: #ccc solid 1px;background: orange;width:144px;text-align:center;padding: 5px;">26/01/2017 23:08:01</td><td align="left" style="border:1px #ccc solid;padding: 5px;">gatLinkList report</td></tr><tr><td></td><td style="vertical-align: top;background: #fff;padding: 5px;">ตอนนี้สินทรัพย์  ในคิว ทั้งหมด ได้ทำการดึงข้อมูลเบื้องต้นครบถ้วนแล้ว ควรลด ปริมาณการอัพเดต  /home/addinth/public_html/getLinkList.CRON.php ลง
+เวลาที่ใช้ไป  คือ 0.0752439498901วินาที
+</td></tr></table>
+<table style="width:100%;border:1px #ccc solid;background-color:#eee;"><tr><td style="border: #ccc solid 1px;background: orange;width:144px;text-align:center;padding: 5px;">26/01/2017 23:16:03</td><td align="left" style="border:1px #ccc solid;padding: 5px;">gatLinkList report</td></tr><tr><td></td><td style="vertical-align: top;background: #fff;padding: 5px;">จำนวนหน้า ที่เหลืออยู่คิว รอการดึงลิ้ง จำนวน  24 กลุ่ม จำนวนเพจรวมทั้งหมด 25เพจ 
+ระบบอัพเดตจากไฟล์   /home/addinth/public_html/getLinkList.CRON.php
+เวลาที่ใช้ไป  คือ 1.13134503365วินาที</td></tr></table>
+<table style="width:100%;border:1px #ccc solid;background-color:#eee;"><tr><td style="border: #ccc solid 1px;background: orange;width:144px;text-align:center;padding: 5px;">26/01/2017 23:24:09</td><td align="left" style="border:1px #ccc solid;padding: 5px;">gatLinkList report</td></tr><tr><td></td><td style="vertical-align: top;background: #fff;padding: 5px;">จำนวนหน้า ที่เหลืออยู่คิว รอการดึงลิ้ง จำนวน  23 กลุ่ม จำนวนเพจรวมทั้งหมด 24เพจ 
+ระบบอัพเดตจากไฟล์   /home/addinth/public_html/getLinkList.CRON.php
+เวลาที่ใช้ไป  คือ 7.78957295418วินาที</td></tr></table>
+<table style="width:100%;border:1px #ccc solid;background-color:#eee;"><tr><td style="border: #ccc solid 1px;background: orange;width:144px;text-align:center;padding: 5px;">26/01/2017 23:31:07</td><td align="left" style="border:1px #ccc solid;padding: 5px;">gatLinkList report</td></tr><tr><td></td><td style="vertical-align: top;background: #fff;padding: 5px;">จำนวนหน้า ที่เหลืออยู่คิว รอการดึงลิ้ง จำนวน  22 กลุ่ม จำนวนเพจรวมทั้งหมด 23เพจ 
+ระบบอัพเดตจากไฟล์   /home/addinth/public_html/getLinkList.CRON.php
+เวลาที่ใช้ไป  คือ 5.1285879612วินาที</td></tr></table>
+<table style="width:100%;border:1px #ccc solid;background-color:#eee;"><tr><td style="border: #ccc solid 1px;background: orange;width:144px;text-align:center;padding: 5px;">26/01/2017 23:32:02</td><td align="left" style="border:1px #ccc solid;padding: 5px;">gatLinkList report</td></tr><tr><td></td><td style="vertical-align: top;background: #fff;padding: 5px;">จำนวนหน้า ที่เหลืออยู่คิว รอการดึงลิ้ง จำนวน  21 กลุ่ม จำนวนเพจรวมทั้งหมด 22เพจ 
+ระบบอัพเดตจากไฟล์   /home/addinth/public_html/getLinkList.CRON.php
+เวลาที่ใช้ไป  คือ 1.18385696411วินาที</td></tr></table>
+<table style="width:100%;border:1px #ccc solid;background-color:#eee;"><tr><td style="border: #ccc solid 1px;background: orange;width:144px;text-align:center;padding: 5px;">26/01/2017 23:40:03</td><td align="left" style="border:1px #ccc solid;padding: 5px;">gatLinkList report</td></tr><tr><td></td><td style="vertical-align: top;background: #fff;padding: 5px;">จำนวนหน้า ที่เหลืออยู่คิว รอการดึงลิ้ง จำนวน  20 กลุ่ม จำนวนเพจรวมทั้งหมด 21เพจ 
+ระบบอัพเดตจากไฟล์   /home/addinth/public_html/getLinkList.CRON.php
+เวลาที่ใช้ไป  คือ 1.90199112892วินาที</td></tr></table>
